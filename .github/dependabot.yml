@@ -16,4 +16,4 @@ updates:
     ignore:
       # mysql-connector-java 5.1 requiert mysql_native_password, supprimé après MySQL 8.0
       - dependency-name: mysql
-        update-types: ["version-update:semver-major"]
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
