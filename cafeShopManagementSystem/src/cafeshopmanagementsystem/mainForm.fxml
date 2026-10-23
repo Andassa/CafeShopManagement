@@ -74,6 +74,11 @@
                                     <FontAwesomeIcon fill="#E1DCC9" glyphName="USERS" size="1.3em" />
                                  </graphic>
                               </Button>
+                              <Button fx:id="ai_btn" layoutX="6.0" layoutY="398.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" stylesheets="@mainFormDesign.css" text="Analyses IA">
+                                 <graphic>
+                                    <FontAwesomeIcon fill="#E1DCC9" glyphName="MAGIC" size="1.3em" />
+                                 </graphic>
+                              </Button>
                               <Button fx:id="logout_btn" layoutX="14.0" layoutY="554.0" mnemonicParsing="false" onAction="#logout" stylesheets="@mainFormDesign.css" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="14.0">
                                  <graphic>
                                     <FontAwesomeIcon fill="#E1DCC9" glyphName="SIGN_OUT" size="2em" />
@@ -368,6 +373,11 @@
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
+                                    <Label fx:id="menu_suggestion" graphicTextGap="8.0" prefHeight="42.0" styleClass="suggestion" visible="false" wrapText="true" AnchorPane.bottomAnchor="153.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                                       <graphic>
+                                          <FontAwesomeIcon fill="#412D15" glyphName="LIGHTBULB_ALT" size="1.4em" />
+                                       </graphic>
+                                    </Label>
                                     <Button fx:id="menu_payBtn" layoutX="15.0" layoutY="420.0" mnemonicParsing="false" onAction="#menuPayBtn" prefHeight="41.0" prefWidth="290.0" styleClass="btn" stylesheets="@mainFormDesign.css" text="Payer" AnchorPane.bottomAnchor="105.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
                                     <Button fx:id="menu_removeBtn" layoutX="28.0" layoutY="489.0" mnemonicParsing="false" onAction="#menuRemoveBtn" prefHeight="41.0" prefWidth="119.0" styleClass="btn" stylesheets="@mainFormDesign.css" text="Retirer" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="28.0" />
                                     <Button fx:id="menu_receiptBtn" layoutX="173.0" layoutY="489.0" mnemonicParsing="false" onAction="#menuReceiptBtn" prefHeight="41.0" prefWidth="119.0" styleClass="btn" stylesheets="@mainFormDesign.css" text="Reçu" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="28.0" />
@@ -404,6 +414,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
+                        <fx:include fx:id="ai_form" source="aiForm.fxml" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                </center>

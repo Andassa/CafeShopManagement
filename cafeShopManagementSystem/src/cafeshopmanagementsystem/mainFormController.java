@@ -14,9 +14,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -189,6 +191,18 @@ public class mainFormController implements Initializable {
     
     @FXML
     private AnchorPane customers_form;
+
+    @FXML
+    private Button ai_btn;
+
+    @FXML
+    private AnchorPane ai_form;
+
+    @FXML
+    private aiFormController ai_formController;
+
+    @FXML
+    private Label menu_suggestion;
     
     @FXML
     private TableView<customersData> customers_tableView;
@@ -810,7 +824,25 @@ public class mainFormController implements Initializable {
         menu_col_price.setCellValueFactory(new PropertyValueFactory<>("price"));
         
         menu_tableView.setItems(menuOrderListData);
+        menuAfficherSuggestion();
     }
+    private void menuAfficherSuggestion() {
+        menu_suggestion.setVisible(false);
+        Set<String> panier = new HashSet<>();
+        for (productData prod : menuOrderListData) {
+            panier.add(prod.getProductName());
+        }
+        try (Connection suggestionDB = database.connectDB()) {
+            analyseVentes.Suggestion s = analyseVentes.suggerer(analyseVentes.chargerPaniers(suggestionDB), panier);
+            if (s != null) {
+                menu_suggestion.setText(String.format("Suggestion : %s\npris avec %.0f %% des %s", s.produit, s.confiance * 100, s.declencheur));
+                menu_suggestion.setVisible(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     private int getid;
     
     public void menuSelectOrder() {
@@ -1093,7 +1125,7 @@ public class mainFormController implements Initializable {
     }
     
     private void setActiveNav(Button active) {
-        for (Button btn : new Button[]{dashboard_btn, inventory_btn, menu_btn, customers_btn}) {
+        for (Button btn : new Button[]{dashboard_btn, inventory_btn, menu_btn, customers_btn, ai_btn}) {
             btn.getStyleClass().remove("nav-btn-active");
         }
         active.getStyleClass().add("nav-btn-active");
@@ -1110,6 +1142,7 @@ public class mainFormController implements Initializable {
             inventory_form.setVisible(false);
             menu_form.setVisible(false);
             customers_form.setVisible(false);
+            ai_form.setVisible(false);
             
             dashboardDisplayNC();
             dashboardDisplayTI();
@@ -1123,6 +1156,7 @@ public class mainFormController implements Initializable {
             inventory_form.setVisible(true);
             menu_form.setVisible(false);
             customers_form.setVisible(false);
+            ai_form.setVisible(false);
             
             inventoryTypeList();
             inventoryStatusList();
@@ -1132,6 +1166,7 @@ public class mainFormController implements Initializable {
             inventory_form.setVisible(false);
             menu_form.setVisible(true);
             customers_form.setVisible(false);
+            ai_form.setVisible(false);
             
             menuDisplayCard();
             menuDisplayTotal();
@@ -1141,8 +1176,17 @@ public class mainFormController implements Initializable {
             inventory_form.setVisible(false);
             menu_form.setVisible(false);
             customers_form.setVisible(true);
+            ai_form.setVisible(false);
             
             customersShowData();
+        } else if (event.getSource() == ai_btn) {
+            dashboard_form.setVisible(false);
+            inventory_form.setVisible(false);
+            menu_form.setVisible(false);
+            customers_form.setVisible(false);
+            ai_form.setVisible(true);
+            
+            ai_formController.actualiser();
         }
         
     }
