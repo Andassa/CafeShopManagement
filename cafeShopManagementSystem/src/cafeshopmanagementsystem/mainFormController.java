@@ -258,14 +258,14 @@ public class mainFormController implements Initializable {
         Date date = new Date();
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
         
-        String sql = "SELECT SUM(total) FROM receipt WHERE date = '"
-                + sqlDate + "'";
+        String sql = "SELECT SUM(total) FROM receipt WHERE date = ?";
         
         connect = database.connectDB();
         
         try {
             double ti = 0;
             prepare = connect.prepareStatement(sql);
+            prepare.setString(1, String.valueOf(sqlDate));
             result = prepare.executeQuery();
             
             if (result.next()) {
@@ -381,15 +381,15 @@ public class mainFormController implements Initializable {
         } else {
 
             // CHECK PRODUCT ID
-            String checkProdID = "SELECT prod_id FROM product WHERE prod_id = '"
-                    + inventory_productID.getText() + "'";
+            String checkProdID = "SELECT prod_id FROM product WHERE prod_id = ?";
             
             connect = database.connectDB();
             
             try {
                 
-                statement = connect.createStatement();
-                result = statement.executeQuery(checkProdID);
+                prepare = connect.prepareStatement(checkProdID);
+                prepare.setString(1, inventory_productID.getText());
+                result = prepare.executeQuery();
                 
                 if (result.next()) {
                     alert = new Alert(AlertType.ERROR);
@@ -457,18 +457,8 @@ public class mainFormController implements Initializable {
             
         } else {
             
-            String path = data.path;
-            path = path.replace("\\", "\\\\");
-            
-            String updateData = "UPDATE product SET "
-                    + "prod_id = '" + inventory_productID.getText() + "', prod_name = '"
-                    + inventory_productName.getText() + "', type = '"
-                    + inventory_type.getSelectionModel().getSelectedItem() + "', stock = '"
-                    + inventory_stock.getText() + "', price = '"
-                    + inventory_price.getText() + "', status = '"
-                    + inventory_status.getSelectionModel().getSelectedItem() + "', image = '"
-                    + path + "', date = '"
-                    + data.date + "' WHERE id = " + data.id;
+            String updateData = "UPDATE product SET prod_id = ?, prod_name = ?, type = ?, stock = ?, "
+                    + "price = ?, status = ?, image = ?, date = ? WHERE id = ?";
             
             connect = database.connectDB();
             
@@ -482,6 +472,15 @@ public class mainFormController implements Initializable {
                 
                 if (option.get().equals(ButtonType.OK)) {
                     prepare = connect.prepareStatement(updateData);
+                    prepare.setString(1, inventory_productID.getText());
+                    prepare.setString(2, inventory_productName.getText());
+                    prepare.setString(3, (String) inventory_type.getSelectionModel().getSelectedItem());
+                    prepare.setString(4, inventory_stock.getText());
+                    prepare.setString(5, inventory_price.getText());
+                    prepare.setString(6, (String) inventory_status.getSelectionModel().getSelectedItem());
+                    prepare.setString(7, data.path);
+                    prepare.setString(8, data.date);
+                    prepare.setInt(9, data.id);
                     prepare.executeUpdate();
                     
                     alert = new Alert(AlertType.INFORMATION);
@@ -524,9 +523,11 @@ public class mainFormController implements Initializable {
             Optional<ButtonType> option = alert.showAndWait();
             
             if (option.get().equals(ButtonType.OK)) {
-                String deleteData = "DELETE FROM product WHERE id = " + data.id;
+                String deleteData = "DELETE FROM product WHERE id = ?";
+                connect = database.connectDB();
                 try {
                     prepare = connect.prepareStatement(deleteData);
+                    prepare.setInt(1, data.id);
                     prepare.executeUpdate();
                     
                     alert = new Alert(AlertType.ERROR);
@@ -766,13 +767,14 @@ public class mainFormController implements Initializable {
         customerID();
         ObservableList<productData> listData = FXCollections.observableArrayList();
         
-        String sql = "SELECT * FROM customer WHERE customer_id = " + cID;
+        String sql = "SELECT * FROM customer WHERE customer_id = ?";
         
         connect = database.connectDB();
         
         try {
             
             prepare = connect.prepareStatement(sql);
+            prepare.setInt(1, cID);
             result = prepare.executeQuery();
             
             productData prod;
@@ -825,13 +827,14 @@ public class mainFormController implements Initializable {
     
     public void menuGetTotal() {
         customerID();
-        String total = "SELECT SUM(price) FROM customer WHERE customer_id = " + cID;
+        String total = "SELECT SUM(price) FROM customer WHERE customer_id = ?";
         
         connect = database.connectDB();
         
         try {
             
             prepare = connect.prepareStatement(total);
+            prepare.setInt(1, cID);
             result = prepare.executeQuery();
             
             if (result.next()) {
@@ -949,7 +952,7 @@ public class mainFormController implements Initializable {
             alert.setContentText("Please select the order you want to remove");
             alert.showAndWait();
         } else {
-            String deleteData = "DELETE FROM customer WHERE id = " + getid;
+            String deleteData = "DELETE FROM customer WHERE id = ?";
             connect = database.connectDB();
             try {
                 alert = new Alert(AlertType.CONFIRMATION);
@@ -960,6 +963,7 @@ public class mainFormController implements Initializable {
                 
                 if (option.get().equals(ButtonType.OK)) {
                     prepare = connect.prepareStatement(deleteData);
+                    prepare.setInt(1, getid);
                     prepare.executeUpdate();
                 }
                 
