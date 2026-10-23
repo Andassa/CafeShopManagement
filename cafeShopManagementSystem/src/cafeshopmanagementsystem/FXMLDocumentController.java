@@ -202,10 +202,10 @@ public class FXMLDocumentController implements Initializable {
             
             try {
                 // CHECK IF THE USERNAME IS ALREADY RECORDED
-                String checkUsername = "SELECT username FROM employee WHERE username = '"
-                        + su_username.getText() + "'";
+                String checkUsername = "SELECT username FROM employee WHERE username = ?";
                 
                 prepare = connect.prepareStatement(checkUsername);
+                prepare.setString(1, su_username.getText());
                 result = prepare.executeQuery();
                 
                 if (result.next()) {
@@ -339,14 +339,14 @@ public class FXMLDocumentController implements Initializable {
         } else {
             
             if (np_newPassword.getText().equals(np_confirmPassword.getText())) {
-                String getDate = "SELECT date FROM employee WHERE username = '"
-                        + fp_username.getText() + "'";
+                String getDate = "SELECT date FROM employee WHERE username = ?";
                 
                 connect = database.connectDB();
                 
                 try {
                     
                     prepare = connect.prepareStatement(getDate);
+                    prepare.setString(1, fp_username.getText());
                     result = prepare.executeQuery();
                     
                     String date = "";
@@ -354,14 +354,15 @@ public class FXMLDocumentController implements Initializable {
                         date = result.getString("date");
                     }
                     
-                    String updatePass = "UPDATE employee SET password = '"
-                            + np_newPassword.getText() + "', question = '"
-                            + fp_question.getSelectionModel().getSelectedItem() + "', answer = '"
-                            + fp_answer.getText() + "', date = '"
-                            + date + "' WHERE username = '"
-                            + fp_username.getText() + "'";
+                    String updatePass = "UPDATE employee SET password = ?, question = ?, answer = ?, date = ? "
+                            + "WHERE username = ?";
                     
                     prepare = connect.prepareStatement(updatePass);
+                    prepare.setString(1, np_newPassword.getText());
+                    prepare.setString(2, (String) fp_question.getSelectionModel().getSelectedItem());
+                    prepare.setString(3, fp_answer.getText());
+                    prepare.setString(4, date);
+                    prepare.setString(5, fp_username.getText());
                     prepare.executeUpdate();
                     
                     alert = new Alert(AlertType.INFORMATION);
