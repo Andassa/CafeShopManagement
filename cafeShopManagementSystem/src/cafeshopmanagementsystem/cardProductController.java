@@ -95,17 +95,18 @@ public class cardProductController implements Initializable {
 
         qty = prod_spinner.getValue();
         String check = "";
-        String checkAvailable = "SELECT status FROM product WHERE prod_id = '"
-                + prodID + "'";
+        String checkAvailable = "SELECT status FROM product WHERE prod_id = ?";
+        String updateStock = "UPDATE product SET prod_name = ?, type = ?, stock = ?, price = ?, "
+                + "status = ?, image = ?, date = ? WHERE prod_id = ?";
 
         connect = database.connectDB();
 
         try {
             int checkStck = 0;
-            String checkStock = "SELECT stock FROM product WHERE prod_id = '"
-                    + prodID + "'";
+            String checkStock = "SELECT stock FROM product WHERE prod_id = ?";
 
             prepare = connect.prepareStatement(checkStock);
+            prepare.setString(1, prodID);
             result = prepare.executeQuery();
 
             if (result.next()) {
@@ -114,19 +115,21 @@ public class cardProductController implements Initializable {
             
             if(checkStck == 0){
                 
-                String updateStock = "UPDATE product SET prod_name = '"
-                            + prod_name.getText() + "', type = '"
-                            + type + "', stock = 0, price = " + pr
-                            + ", status = 'Unavailable', image = '"
-                            + prod_image + "', date = '"
-                            + prod_date + "' WHERE prod_id = '"
-                            + prodID + "'";
                 prepare = connect.prepareStatement(updateStock);
+                prepare.setString(1, prod_name.getText());
+                prepare.setString(2, type);
+                prepare.setInt(3, 0);
+                prepare.setDouble(4, pr);
+                prepare.setString(5, "Unavailable");
+                prepare.setString(6, prod_image);
+                prepare.setString(7, prod_date);
+                prepare.setString(8, prodID);
                 prepare.executeUpdate();
                 
             }
 
             prepare = connect.prepareStatement(checkAvailable);
+            prepare.setString(1, prodID);
             result = prepare.executeQuery();
 
             if (result.next()) {
@@ -148,7 +151,7 @@ public class cardProductController implements Initializable {
                     alert.setContentText("Invalid. This product is Out of stock");
                     alert.showAndWait();
                 } else {
-                    prod_image = prod_image.replace("\\", "\\\\");
+                    String insertImage = prod_image.replace("\\", "\\\\");
                     
                     String insertData = "INSERT INTO customer "
                             + "(customer_id, prod_id, prod_name, type, quantity, price, date, image, em_username) "
@@ -167,7 +170,7 @@ public class cardProductController implements Initializable {
                     java.sql.Date sqlDate = new java.sql.Date(date.getTime());
                     prepare.setString(7, String.valueOf(sqlDate));
 
-                    prepare.setString(8, prod_image);
+                    prepare.setString(8, insertImage);
                     prepare.setString(9, data.username);
 
                     prepare.executeUpdate();
@@ -179,16 +182,15 @@ public class cardProductController implements Initializable {
                     System.out.println("Date: " + prod_date);
                     System.out.println("Image: " + prod_image);
 
-                    String updateStock = "UPDATE product SET prod_name = '"
-                            + prod_name.getText() + "', type = '"
-                            + type + "', stock = " + upStock + ", price = " + pr
-                            + ", status = '"
-                            + check + "', image = '"
-                            + prod_image + "', date = '"
-                            + prod_date + "' WHERE prod_id = '"
-                            + prodID + "'";
-
                     prepare = connect.prepareStatement(updateStock);
+                    prepare.setString(1, prod_name.getText());
+                    prepare.setString(2, type);
+                    prepare.setInt(3, upStock);
+                    prepare.setDouble(4, pr);
+                    prepare.setString(5, check);
+                    prepare.setString(6, prod_image);
+                    prepare.setString(7, prod_date);
+                    prepare.setString(8, prodID);
                     prepare.executeUpdate();
 
                     alert = new Alert(AlertType.INFORMATION);
