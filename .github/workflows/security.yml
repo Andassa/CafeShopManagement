@@ -59,9 +59,10 @@ jobs:
 
       # Rapport uniquement : les bibliothèques jar historiques ont des CVE connues,
       # elles remontent dans l'onglet Security sans bloquer le pipeline.
+      # Le mode "rootfs" est requis : le mode "fs" n'analyse pas les fichiers .jar.
       - name: Scan des vulnérabilités
         run: |
-          docker run --rm -v "$PWD:/src" aquasec/trivy:latest fs \
+          docker run --rm -v "$PWD:/src" aquasec/trivy:latest rootfs \
             --scanners vuln \
             --severity HIGH,CRITICAL \
             --format sarif \
