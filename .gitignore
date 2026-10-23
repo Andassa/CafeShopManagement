@@ -1,0 +1,11 @@
+# Build hors NetBeans
+out/
+
+# Secrets locaux
+.env
+
+# Système / IDE
+.DS_Store
+.idea/
+*.iml
+.vscode/
