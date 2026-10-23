@@ -1,0 +1,80 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build (JDK 8 + JavaFX)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup JDK 8 avec JavaFX
+        uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: '8'
+          java-package: jdk+fx
+
+      - name: Build
+        run: ./scripts/build.sh
+
+      - name: Vérification du jar
+        run: |
+          unzip -l out/package/CafeShopManagement.jar | grep -q 'cafeshopmanagementsystem/CafeShopManagementSystem.class'
+          unzip -l out/package/CafeShopManagement.jar | grep -q 'cafeshopmanagementsystem/report.jrxml'
+          unzip -p out/package/CafeShopManagement.jar META-INF/MANIFEST.MF
+
+      - name: Upload artefact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CafeShopManagement-${{ github.sha }}
+          path: out/package/
+          retention-days: 14
+
+  database:
+    name: Schéma MySQL
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost -proot"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Application du schéma
+        run: mysql -h 127.0.0.1 -uroot -proot < database/schema.sql
+
+      - name: Vérification des tables
+        run: |
+          TABLES=$(mysql -h 127.0.0.1 -uroot -proot -N -e "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'cafe'")
+          echo "Tables créées : $TABLES"
+          test "$TABLES" -eq 4
+
+  docker-compose:
+    name: Validation Docker Compose
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: docker compose config
+        run: docker compose config --quiet
