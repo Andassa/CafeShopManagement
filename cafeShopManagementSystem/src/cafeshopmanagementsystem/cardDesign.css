@@ -10,17 +10,38 @@ and open the template in the editor.
 */
 
 .card{
-    -fx-background-color: derive(#E1DCC9, 50%);
-    -fx-background-radius: 5px;
+    -fx-background-color: derive(#E1DCC9, 65%);
+    -fx-background-radius: 12px;
+    -fx-border-color: rgba(65, 45, 21, 0.12);
+    -fx-border-radius: 12px;
+}
+.card:hover{
+    -fx-border-color: rgba(65, 45, 21, 0.45);
 }
 .shadow{
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);
+    -fx-effect: dropshadow(gaussian, rgba(31, 21, 12, 0.16), 10, 0, 0, 3);
+}
+#prod_name{
+    -fx-text-fill: #1F150C;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+#prod_price{
+    -fx-text-fill: #412D15;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
 }
 .btn{
-    -fx-background-color: linear-gradient(to bottom right, #412D15, #1F150C); 
+    -fx-background-color: linear-gradient(to bottom right, #412D15, #1F150C);
+    -fx-background-radius: 6px;
     -fx-cursor: hand;
     -fx-text-fill: #E1DCC9;
+    -fx-font-weight: bold;
 }
 .btn:hover{
-    -fx-background-color: linear-gradient(to bottom right, #1F150C, #000000); 
+    -fx-background-color: linear-gradient(to bottom right, #1F150C, #000000);
+}
+.btn:pressed{
+    -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
 }

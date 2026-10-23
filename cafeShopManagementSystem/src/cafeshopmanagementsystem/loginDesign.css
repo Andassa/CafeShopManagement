@@ -10,44 +10,79 @@ and open the template in the editor.
 */
 
 .gradient{
-    -fx-background-color: linear-gradient(to bottom right, #000000, #412D15);
+    -fx-background-color: linear-gradient(to bottom right, #000000, #1F150C 55%, #412D15);
 }
 
 .white-form{
     -fx-background-color: #E1DCC9;
+    -fx-accent: #412D15;
+    -fx-focus-color: #412D15;
+    -fx-faint-focus-color: rgba(65, 45, 21, 0.15);
+    -fx-selection-bar: #412D15;
+    -fx-selection-bar-text: #E1DCC9;
 }
 
 .head-label{
     -fx-border-color: #412D15;
-    -fx-border-width: 0 0 0 3px;
-    -fx-padding: 0 0 0 5px;
+    -fx-border-width: 0 0 0 4px;
+    -fx-padding: 0 0 0 8px;
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
 }
 
 .login-btn{
-    -fx-background-color: linear-gradient(to bottom right, #412D15, #1F150C); 
-    -fx-background-radius: 5px;
+    -fx-background-color: linear-gradient(to bottom right, #412D15, #1F150C);
+    -fx-background-radius: 8px;
     -fx-cursor: hand;
     -fx-text-fill: #E1DCC9;
     -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(31, 21, 12, 0.30), 8, 0, 0, 3);
 }
 .login-btn:hover{
-    -fx-background-color: linear-gradient(to bottom right, #1F150C, #000000); 
+    -fx-background-color: linear-gradient(to bottom right, #1F150C, #000000);
+}
+.login-btn:pressed{
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
 }
 
 .textfield{
-    -fx-background-color: transparent;
-    -fx-border-color: linear-gradient(to bottom right, #412D15, #1F150C);
-    -fx-border-width: .5px;
+    -fx-background-color: #FBF9F4;
+    -fx-background-radius: 6px;
+    -fx-border-color: rgba(65, 45, 21, 0.30);
+    -fx-border-radius: 6px;
+    -fx-border-width: 1px;
+    -fx-text-fill: #1F150C;
+    -fx-prompt-text-fill: rgba(65, 45, 21, 0.45);
+    -fx-padding: 0 10px 0 10px;
 }
 .textfield:focused{
-    -fx-border-width: 1px;
+    -fx-border-color: #412D15;
+    -fx-border-width: 1.5px;
+}
+.textfield .arrow-button{
+    -fx-background-color: transparent;
+}
+.textfield .arrow{
+    -fx-background-color: #412D15;
+}
+
+.hyperlink{
+    -fx-text-fill: #412D15;
+    -fx-border-color: transparent;
+}
+.hyperlink:hover{
+    -fx-underline: true;
 }
 
 .create-btn{
     -fx-background-color: transparent;
+    -fx-background-radius: 8px;
     -fx-cursor: hand;
     -fx-text-fill: #E1DCC9;
     -fx-border-color: #E1DCC9;
+    -fx-border-radius: 8px;
     -fx-border-width: 1px;
 }
 .create-btn:hover{

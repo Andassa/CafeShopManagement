@@ -1092,7 +1092,18 @@ public class mainFormController implements Initializable {
         customers_tableView.setItems(customersListData);
     }
     
+    private void setActiveNav(Button active) {
+        for (Button btn : new Button[]{dashboard_btn, inventory_btn, menu_btn, customers_btn}) {
+            btn.getStyleClass().remove("nav-btn-active");
+        }
+        active.getStyleClass().add("nav-btn-active");
+    }
+    
     public void switchForm(ActionEvent event) {
+        
+        if (event.getSource() instanceof Button) {
+            setActiveNav((Button) event.getSource());
+        }
         
         if (event.getSource() == dashboard_btn) {
             dashboard_form.setVisible(true);
@@ -1187,6 +1198,7 @@ public class mainFormController implements Initializable {
         
         inventory_type.setConverter(traduction.convertisseur());
         inventory_status.setConverter(traduction.convertisseur());
+        setActiveNav(dashboard_btn);
         
         dashboardDisplayNC();
         dashboardDisplayTI();

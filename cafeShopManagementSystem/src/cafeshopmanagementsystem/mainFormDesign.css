@@ -9,36 +9,56 @@ and open the template in the editor.
     Palette    : #000000 (black) / #1F150C (night) / #412D15 (dark coffee) / #E1DCC9 (beige)
 */
 
+/* ---------- Thème global (couleurs Modena héritées par tous les contrôles) ---------- */
+
 .main-bg{
     -fx-background-color: #E1DCC9;
+    -fx-accent: #412D15;
+    -fx-focus-color: #412D15;
+    -fx-faint-focus-color: rgba(65, 45, 21, 0.15);
+    -fx-selection-bar: #412D15;
+    -fx-selection-bar-non-focused: derive(#412D15, 35%);
+    -fx-selection-bar-text: #E1DCC9;
 }
+
+/* ---------- Barre latérale ---------- */
 
 .header{
     -fx-background-color: linear-gradient(to bottom right, #412D15, #1F150C);
-    -fx-border-color: #E1DCC9;
-    -fx-border-width: 0 0 .8px 0;
+    -fx-border-color: rgba(225, 220, 201, 0.15);
+    -fx-border-width: 0 0 1px 0;
 }
 
 .nav-form{
-    -fx-background-color: linear-gradient(to bottom right, #1F150C, #000000);
+    -fx-background-color: linear-gradient(to bottom, #1F150C, #000000);
 }
 
 .nav-btn{
     -fx-background-color: transparent;
-    -fx-border-color: #E1DCC9;
-    -fx-border-width: .4px;
+    -fx-background-radius: 8px;
+    -fx-border-color: transparent;
     -fx-cursor: hand;
     -fx-text-fill: #E1DCC9;
     -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 0 0 18px;
+    -fx-graphic-text-gap: 14px;
 }
 .nav-btn:hover{
+    -fx-background-color: rgba(225, 220, 201, 0.10);
+    -fx-text-fill: #E1DCC9;
+}
+.nav-btn-active, .nav-btn-active:hover{
     -fx-background-color: #E1DCC9;
     -fx-text-fill: #1F150C;
+}
+.nav-btn-active FontAwesomeIcon, .nav-btn-active .glyph-icon{
+    -fx-fill: #1F150C;
 }
 
 .logout{
     -fx-background-color: #412D15;
-    -fx-padding: 5px;
+    -fx-padding: 6px;
     -fx-cursor: hand;
     -fx-background-radius: 50px;
 }
@@ -46,61 +66,200 @@ and open the template in the editor.
     -fx-background-color: #000000;
 }
 
+/* ---------- Panneaux ---------- */
+
 .shadow{
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);
+    -fx-effect: dropshadow(gaussian, rgba(31, 21, 12, 0.18), 14, 0, 0, 4);
 }
 
 .white-bg{
-    -fx-background-color: derive(#E1DCC9, 50%);
+    -fx-background-color: derive(#E1DCC9, 55%);
 }
 
 .radius{
-    -fx-background-radius: 8px;
+    -fx-background-radius: 14px;
 }
 
 .transparent{
     -fx-background-color: transparent;
 }
+.transparent > .viewport{
+    -fx-background-color: transparent;
+}
+
+.stat-card{
+    -fx-background-color: linear-gradient(to bottom right, #412D15, #1F150C);
+    -fx-background-radius: 14px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 10, 0, 0, 3);
+}
+
+.separator .line{
+    -fx-border-color: rgba(65, 45, 21, 0.15);
+}
+
+/* ---------- Tableaux ---------- */
 
 .table-view{
-    -fx-background-color: transparent;
+    -fx-background-color: derive(#E1DCC9, 70%);
+    -fx-background-radius: 10px;
     -fx-padding: 0;
-    -fx-border-color: linear-gradient(to bottom right, #412D15, #1F150C);
-    -fx-border-radius: 5px;
-    -fx-border-width: 1.5px;
+    -fx-border-color: rgba(65, 45, 21, 0.25);
+    -fx-border-radius: 10px;
+    -fx-border-width: 1px;
+    -fx-control-inner-background: derive(#E1DCC9, 75%);
+    -fx-control-inner-background-alt: derive(#E1DCC9, 45%);
+    -fx-table-cell-border-color: transparent;
 }
 .table-view .column-header-background{
-    -fx-background-color: linear-gradient(to bottom right, #412D15, #1F150C);
-    -fx-background-radius: 5px 5px 0 0;
-    -fx-background-insets: 0 0 0 0;
+    -fx-background-color: #1F150C;
+    -fx-background-radius: 10px 10px 0 0;
+    -fx-background-insets: 0;
 }
-.table-view .column-header, .filter{
+.table-view .column-header, .table-view .filler, .filter{
     -fx-background-color: transparent;
+    -fx-border-color: transparent;
     -fx-size: 40px;
 }
 .table-view .column-header .label{
     -fx-text-fill: #E1DCC9;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 0 0 8px;
+}
+.table-view .show-hide-columns-button{
+    -fx-background-color: transparent;
+}
+.table-view .show-hide-columns-button .show-hide-column-image{
+    -fx-background-color: #E1DCC9;
+}
+.table-row-cell{
+    -fx-cell-size: 32px;
+}
+.table-view .table-cell{
+    -fx-padding: 0 0 0 10px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-text-fill: #1F150C;
+}
+.table-row-cell:selected .table-cell{
+    -fx-text-fill: #E1DCC9;
 }
 
+/* ---------- Champs de saisie ---------- */
+
+.text-field, .combo-box, .spinner{
+    -fx-background-color: #FBF9F4;
+    -fx-background-radius: 6px;
+    -fx-border-color: rgba(65, 45, 21, 0.30);
+    -fx-border-radius: 6px;
+    -fx-text-fill: #1F150C;
+    -fx-prompt-text-fill: rgba(65, 45, 21, 0.45);
+}
+.text-field:focused, .combo-box:focused, .spinner:focused{
+    -fx-border-color: #412D15;
+}
+.spinner .text-field, .combo-box .text-field{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+.combo-box .arrow-button, .spinner .increment-arrow-button, .spinner .decrement-arrow-button{
+    -fx-background-color: transparent;
+}
+.combo-box .arrow, .spinner .increment-arrow, .spinner .decrement-arrow{
+    -fx-background-color: #412D15;
+}
+
+/* ---------- Boutons ---------- */
+
 .btn{
-    -fx-background-color: linear-gradient(to bottom right, #412D15, #1F150C); 
+    -fx-background-color: linear-gradient(to bottom right, #412D15, #1F150C);
+    -fx-background-radius: 8px;
     -fx-cursor: hand;
     -fx-text-fill: #E1DCC9;
     -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(31, 21, 12, 0.25), 6, 0, 0, 2);
 }
 .btn:hover{
-    -fx-background-color: linear-gradient(to bottom right, #1F150C, #000000); 
+    -fx-background-color: linear-gradient(to bottom right, #1F150C, #000000);
+}
+.btn:pressed{
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
 }
 
+/* ---------- Défilement ---------- */
+
+.scroll-pane{
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+.scroll-pane > .viewport{
+    -fx-background-color: transparent;
+}
+.scroll-bar{
+    -fx-background-color: transparent;
+}
+.scroll-bar .thumb{
+    -fx-background-color: rgba(65, 45, 21, 0.35);
+    -fx-background-radius: 6px;
+    -fx-background-insets: 2px;
+}
+.scroll-bar .thumb:hover{
+    -fx-background-color: rgba(65, 45, 21, 0.6);
+}
+.scroll-bar .increment-button, .scroll-bar .decrement-button{
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow{
+    -fx-shape: " ";
+    -fx-padding: 0;
+}
+.corner{
+    -fx-background-color: transparent;
+}
+
+/* ---------- Graphiques ---------- */
+
+.chart-title{
+    -fx-text-fill: #1F150C;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+.chart-plot-background{
+    -fx-background-color: transparent;
+}
+.chart-vertical-grid-lines{
+    -fx-stroke: transparent;
+}
+.chart-horizontal-grid-lines{
+    -fx-stroke: rgba(65, 45, 21, 0.12);
+}
+.chart-alternative-row-fill{
+    -fx-fill: transparent;
+}
+.axis{
+    -fx-tick-label-fill: #412D15;
+}
+.axis:bottom, .axis:left{
+    -fx-border-color: transparent;
+}
 .default-color0.chart-series-area-line{
     -fx-stroke: #412D15;
+    -fx-stroke-width: 2.5px;
 }
 .default-color0.chart-series-area-fill{
-    -fx-fill: rgba(65, 45, 21, 0.25);
+    -fx-fill: linear-gradient(to bottom, rgba(65, 45, 21, 0.45), rgba(65, 45, 21, 0.02));
 }
 .default-color0.chart-area-symbol{
     -fx-background-color: #412D15, #E1DCC9;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 6px;
+    -fx-padding: 5px;
 }
 .default-color0.chart-bar{
     -fx-bar-fill: #412D15;
+    -fx-background-color: linear-gradient(to bottom, #412D15, #1F150C);
+    -fx-background-radius: 6px 6px 0 0;
 }
