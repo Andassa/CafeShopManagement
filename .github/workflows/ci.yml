@@ -19,10 +19,10 @@ jobs:
     name: Build (JDK 8 + JavaFX)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Setup JDK 8 avec JavaFX
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v6
         with:
           distribution: zulu
           java-version: '8'
@@ -38,7 +38,7 @@ jobs:
           unzip -p out/package/CafeShopManagement.jar META-INF/MANIFEST.MF
 
       - name: Upload artefact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: CafeShopManagement-${{ github.sha }}
           path: out/package/
@@ -60,7 +60,7 @@ jobs:
           --health-timeout=5s
           --health-retries=10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Application du schéma
         run: mysql -h 127.0.0.1 -uroot -proot < database/schema.sql
@@ -75,6 +75,6 @@ jobs:
     name: Validation Docker Compose
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: docker compose config
         run: docker compose config --quiet
