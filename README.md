@@ -14,8 +14,29 @@ Elle permet de gérer les employés, le stock de produits, la prise de commandes
 
 ---
 
+## Aperçu
+
+| Connexion | Inscription |
+|-----------|-------------|
+| ![Connexion](docs/screenshots/connexion.png) | ![Inscription](docs/screenshots/inscription.png) |
+
+| Tableau de bord |
+|-----------------|
+| ![Tableau de bord](docs/screenshots/tableau-de-bord.png) |
+
+| Inventaire | Menu et commandes |
+|------------|-------------------|
+| ![Inventaire](docs/screenshots/inventaire.png) | ![Menu](docs/screenshots/menu.png) |
+
+| Clients | Reçu |
+|---------|------|
+| ![Clients](docs/screenshots/clients.png) | ![Reçu](docs/screenshots/recu.png) |
+
+---
+
 ## Sommaire
 
+- [Aperçu](#aperçu)
 - [Fonctionnalités](#fonctionnalités)
 - [Technologies](#technologies)
 - [Structure du projet](#structure-du-projet)
@@ -27,6 +48,11 @@ Elle permet de gérer les employés, le stock de produits, la prise de commandes
 ---
 
 ## Fonctionnalités
+
+### Interface
+- Entièrement en **français** (écrans, messages et reçu)
+- Palette **café** : `#000000` noir, `#1F150C` brun nuit, `#412D15` café, `#E1DCC9` beige
+- Navigation avec icônes et onglet actif, cartes arrondies, graphiques épurés
 
 ### Authentification
 - Connexion des employés (nom d'utilisateur / mot de passe)
@@ -41,8 +67,8 @@ Elle permet de gérer les employés, le stock de produits, la prise de commandes
 
 ### Inventaire
 - Ajout, modification, suppression de produits
-- Catégories : `Meals` / `Drinks`
-- Statut : `Available` / `Unavailable`
+- Catégories : Plats / Boissons
+- Statut : Disponible / Indisponible
 - Gestion du stock et import d'une image par produit
 
 ### Menu & commandes
@@ -83,6 +109,7 @@ Elle permet de gérer les employés, le stock de produits, la prise de commandes
 │   │   └── release.yml                 # Publication des releases sur tag
 │   └── dependabot.yml                  # Mises à jour automatiques
 ├── database/schema.sql                 # Schéma de la base `cafe`
+├── docs/screenshots/                   # Captures d'écran
 ├── docker-compose.yml                  # MySQL + Adminer
 ├── .env.example                        # Variables d'environnement
 ├── scripts/build.sh                    # Build sans NetBeans
@@ -96,6 +123,7 @@ Elle permet de gérer les employés, le stock de produits, la prise de commandes
     │   ├── productData.java                # Modèle produit
     │   ├── customersData.java              # Modèle client / reçu
     │   ├── data.java                       # Données partagées (session)
+    │   ├── traduction.java                 # Libellés français des valeurs en base
     │   ├── report.jrxml                    # Modèle du reçu JasperReports
     │   └── *.css                           # Styles des écrans
     ├── dist/lib/                           # Dépendances (.jar)
