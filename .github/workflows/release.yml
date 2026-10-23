@@ -12,7 +12,7 @@ jobs:
     name: Publication de la release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Setup JDK 8 avec JavaFX
         uses: actions/setup-java@v4
