@@ -315,8 +315,3 @@ and open the template in the editor.
     -fx-background-radius: 6px;
     -fx-padding: 8px;
 }
-.sql-label{
-    -fx-text-fill: rgba(65, 45, 21, 0.75);
-    -fx-font-family: "Menlo", "Consolas", monospace;
-    -fx-font-size: 10px;
-}

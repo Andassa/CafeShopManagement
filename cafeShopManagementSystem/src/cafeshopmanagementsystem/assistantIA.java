@@ -18,6 +18,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,6 +32,7 @@ public class assistantIA {
     public static final String BASE_URL = env("AI_BASE_URL", "https://api.groq.com/openai/v1").replaceAll("/+$", "");
     public static final String MODEL = env("AI_MODEL", "llama-3.3-70b-versatile");
 
+    private static final Logger LOG = Logger.getLogger(assistantIA.class.getName());
     private static final int LIGNES_MAX = 200;
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
@@ -71,8 +73,19 @@ public class assistantIA {
     }
 
     public static String fournisseur() {
-        String hote = BASE_URL.replaceFirst("^https?://", "").replaceFirst("/.*$", "");
-        return MODEL + " via " + hote;
+        if (BASE_URL.contains("groq.com")) {
+            return "Groq";
+        }
+        if (BASE_URL.contains("googleapis.com")) {
+            return "Google Gemini";
+        }
+        if (BASE_URL.contains(":11434")) {
+            return "Ollama, en local";
+        }
+        if (BASE_URL.contains("openai.com")) {
+            return "OpenAI";
+        }
+        return "service IA";
     }
 
     public static Reponse demander(String question, Connection connect) throws Exception {
@@ -86,6 +99,7 @@ public class assistantIA {
         }
 
         reponse.sql = sql.asText().trim();
+        LOG.info("Requête générée par l'assistant : " + reponse.sql.replaceAll("\\s+", " "));
         executer(verifierRequete(reponse.sql), connect, reponse);
 
         ObjectNode contexte = MAPPER.createObjectNode();

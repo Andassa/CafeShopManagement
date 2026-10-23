@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
@@ -27,6 +29,7 @@ import javafx.scene.control.TextField;
 public class aiFormController implements Initializable {
 
     private static final Locale FR = Locale.FRANCE;
+    private static final Logger LOG = Logger.getLogger(aiFormController.class.getName());
 
     @FXML
     private TableView<analyseVentes.Reappro> ai_stockTable;
@@ -52,8 +55,6 @@ public class aiFormController implements Initializable {
     private TextArea ai_answer;
     @FXML
     private TableView<List<String>> ai_resultTable;
-    @FXML
-    private Label ai_sql;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -88,8 +89,8 @@ public class aiFormController implements Initializable {
         });
 
         ai_status.setText(assistantIA.estConfigure()
-                ? "Connecté : " + assistantIA.fournisseur()
-                : "Inactif : ajoutez une clé gratuite dans AI_API_KEY (voir le README)");
+                ? "Assistant prêt (" + assistantIA.fournisseur() + ")"
+                : "Assistant désactivé : une clé gratuite est à configurer (voir le README)");
         ai_answer.setText("Posez une question sur vos ventes, vos produits ou vos clients.\n\n"
                 + "Exemples :\n"
                 + "- Quel produit a rapporté le plus cette semaine ?\n"
@@ -141,7 +142,6 @@ public class aiFormController implements Initializable {
 
         ai_askBtn.setDisable(true);
         ai_answer.setText("Analyse en cours…");
-        ai_sql.setText("");
         ai_resultTable.getColumns().clear();
         ai_resultTable.getItems().clear();
 
@@ -158,7 +158,8 @@ public class aiFormController implements Initializable {
             ai_askBtn.setDisable(false);
         });
         tache.setOnFailed(e -> {
-            ai_answer.setText("Désolé, je n'ai pas pu répondre.\n\n" + tache.getException().getMessage());
+            LOG.log(Level.WARNING, "Échec de l'assistant IA", tache.getException());
+            ai_answer.setText(messageErreur(tache.getException()));
             ai_askBtn.setDisable(false);
         });
         demarrer(tache);
@@ -166,10 +167,9 @@ public class aiFormController implements Initializable {
 
     private void afficher(assistantIA.Reponse reponse) {
         ai_answer.setText(reponse.texte);
-        ai_sql.setText(reponse.sql == null ? "" : "SQL : " + reponse.sql.replaceAll("\\s+", " "));
         for (int i = 0; i < reponse.colonnes.size(); i++) {
             final int index = i;
-            TableColumn<List<String>, String> colonne = new TableColumn<>(reponse.colonnes.get(i));
+            TableColumn<List<String>, String> colonne = new TableColumn<>(entete(reponse.colonnes.get(i)));
             colonne.setCellValueFactory(c -> new ReadOnlyStringWrapper(c.getValue().get(index)));
             ai_resultTable.getColumns().add(colonne);
         }
@@ -235,6 +235,21 @@ public class aiFormController implements Initializable {
             lignes.add("Pas encore assez d'historique de ventes pour une analyse.");
         }
         return lignes;
+    }
+
+    private static String entete(String colonne) {
+        String texte = colonne.replace('_', ' ').trim();
+        return texte.isEmpty() ? texte : Character.toUpperCase(texte.charAt(0)) + texte.substring(1);
+    }
+
+    private static String messageErreur(Throwable erreur) {
+        if (erreur instanceof IllegalArgumentException) {
+            return "Cette question demande une action non autorisée. L'assistant peut seulement consulter les ventes, les produits et les commandes.";
+        }
+        if (erreur instanceof java.io.IOException) {
+            return "Le service IA ne répond pas pour le moment. Vérifiez la connexion Internet et la clé AI_API_KEY, puis réessayez.";
+        }
+        return "Je n'ai pas réussi à répondre à cette question. Essayez de la reformuler plus simplement.";
     }
 
     private static int urgence(analyseVentes.Reappro r) {
