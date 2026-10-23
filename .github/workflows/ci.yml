@@ -38,7 +38,7 @@ jobs:
           unzip -p out/package/CafeShopManagement.jar META-INF/MANIFEST.MF
 
       - name: Upload artefact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: CafeShopManagement-${{ github.sha }}
           path: out/package/
