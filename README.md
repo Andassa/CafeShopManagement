@@ -1,58 +1,62 @@
-# ☕ CafeShopManagement
+# CafeShopManagement
 
 Application de bureau de **gestion de café** développée en **JavaFX** avec une base de données **MySQL**.
 Elle permet de gérer les employés, le stock de produits, la prise de commandes, les paiements et l'édition de reçus.
 
+[![CI](https://github.com/Andassa/CafeShopManagement/actions/workflows/ci.yml/badge.svg)](https://github.com/Andassa/CafeShopManagement/actions/workflows/ci.yml)
+[![Security](https://github.com/Andassa/CafeShopManagement/actions/workflows/security.yml/badge.svg)](https://github.com/Andassa/CafeShopManagement/actions/workflows/security.yml)
 ![Java](https://img.shields.io/badge/Java-8-orange?logo=openjdk)
 ![JavaFX](https://img.shields.io/badge/JavaFX-UI-blue)
 ![MySQL](https://img.shields.io/badge/MySQL-Database-4479A1?logo=mysql&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)
 ![JasperReports](https://img.shields.io/badge/JasperReports-Reçus-green)
 ![NetBeans](https://img.shields.io/badge/IDE-NetBeans-1B6AC6?logo=apachenetbeanside)
 
 ---
 
-## 📑 Sommaire
+## Sommaire
 
-- [Fonctionnalités](#-fonctionnalités)
-- [Technologies](#-technologies)
-- [Structure du projet](#-structure-du-projet)
-- [Base de données](#-base-de-données)
-- [Installation et lancement](#-installation-et-lancement)
-- [Auteur](#-auteur)
+- [Fonctionnalités](#fonctionnalités)
+- [Technologies](#technologies)
+- [Structure du projet](#structure-du-projet)
+- [Base de données](#base-de-données)
+- [Installation et lancement](#installation-et-lancement)
+- [CI/CD et DevSecOps](#cicd-et-devsecops)
+- [Auteur](#auteur)
 
 ---
 
-## ✨ Fonctionnalités
+## Fonctionnalités
 
-### 🔐 Authentification
+### Authentification
 - Connexion des employés (nom d'utilisateur / mot de passe)
 - Création de compte avec **question de sécurité**
 - Réinitialisation du mot de passe via la question de sécurité
 
-### 📊 Tableau de bord
+### Tableau de bord
 - Nombre total de clients
 - Revenu du jour et revenu total
 - Nombre de produits vendus
 - Graphiques d'évolution des **revenus** et des **clients** par date
 
-### 📦 Inventaire
+### Inventaire
 - Ajout, modification, suppression de produits
 - Catégories : `Meals` / `Drinks`
 - Statut : `Available` / `Unavailable`
 - Gestion du stock et import d'une image par produit
 
-### 🧾 Menu & commandes
+### Menu & commandes
 - Affichage des produits sous forme de **cartes**
 - Ajout au panier avec choix de la quantité (le stock est décrémenté automatiquement)
 - Calcul du total, saisie du montant payé et rendu de monnaie
 - Paiement et génération d'un **reçu** imprimable (JasperReports)
 
-### 👥 Clients
+### Clients
 - Historique des commandes / reçus (ID client, total, date, caissier)
 
 ---
 
-## 🛠 Technologies
+## Technologies
 
 | Composant        | Outil                        |
 |------------------|------------------------------|
@@ -61,35 +65,49 @@ Elle permet de gérer les employés, le stock de produits, la prise de commandes
 | Base de données  | MySQL (`mysql-connector-java 5.1.48`) |
 | Reçus            | JasperReports 6.3.0          |
 | Icônes           | FontAwesomeFX 8.2            |
-| IDE / Build      | NetBeans + Ant               |
+| IDE / Build      | NetBeans + Ant, script `scripts/build.sh` |
+| Conteneurs       | Docker Compose (MySQL 8 + Adminer) |
+| CI/CD            | GitHub Actions               |
+| Sécurité         | CodeQL, Gitleaks, Trivy, Dependabot |
 
 ---
 
-## 📁 Structure du projet
+## Structure du projet
 
 ```
-cafeShopManagementSystem/
-├── src/cafeshopmanagementsystem/
-│   ├── CafeShopManagementSystem.java   # Point d'entrée de l'application
-│   ├── database.java                   # Connexion MySQL
-│   ├── FXMLDocument.fxml / Controller  # Connexion, inscription, mot de passe oublié
-│   ├── mainForm.fxml / Controller      # Dashboard, inventaire, menu, clients
-│   ├── cardProduct.fxml / Controller   # Carte produit du menu
-│   ├── productData.java                # Modèle produit
-│   ├── customersData.java              # Modèle client / reçu
-│   ├── data.java                       # Données partagées (session)
-│   ├── report.jrxml                    # Modèle du reçu JasperReports
-│   └── *.css                           # Styles des écrans
-├── dist/lib/                           # Dépendances (.jar)
-├── nbproject/                          # Configuration NetBeans
-└── build.xml                           # Script Ant
+.
+├── .github/
+│   ├── workflows/
+│   │   ├── ci.yml                      # Build, schéma MySQL, Docker Compose
+│   │   ├── security.yml                # CodeQL, Gitleaks, Trivy
+│   │   └── release.yml                 # Publication des releases sur tag
+│   └── dependabot.yml                  # Mises à jour automatiques
+├── database/schema.sql                 # Schéma de la base `cafe`
+├── docker-compose.yml                  # MySQL + Adminer
+├── .env.example                        # Variables d'environnement
+├── scripts/build.sh                    # Build sans NetBeans
+└── cafeShopManagementSystem/
+    ├── src/cafeshopmanagementsystem/
+    │   ├── CafeShopManagementSystem.java   # Point d'entrée de l'application
+    │   ├── database.java                   # Connexion MySQL
+    │   ├── FXMLDocument.fxml / Controller  # Connexion, inscription, mot de passe oublié
+    │   ├── mainForm.fxml / Controller      # Dashboard, inventaire, menu, clients
+    │   ├── cardProduct.fxml / Controller   # Carte produit du menu
+    │   ├── productData.java                # Modèle produit
+    │   ├── customersData.java              # Modèle client / reçu
+    │   ├── data.java                       # Données partagées (session)
+    │   ├── report.jrxml                    # Modèle du reçu JasperReports
+    │   └── *.css                           # Styles des écrans
+    ├── dist/lib/                           # Dépendances (.jar)
+    ├── nbproject/                          # Configuration NetBeans
+    └── build.xml                           # Script Ant
 ```
 
 ---
 
-## 🗄 Base de données
+## Base de données
 
-Nom de la base : **`cafe`**
+Nom de la base : **`cafe`**. Le script complet se trouve dans [`database/schema.sql`](database/schema.sql).
 
 ```sql
 CREATE DATABASE cafe;
@@ -138,16 +156,21 @@ CREATE TABLE receipt (
 );
 ```
 
-> La connexion est configurée dans `database.java` :
-> `jdbc:mysql://localhost/cafe` avec l'utilisateur `root` et un mot de passe vide. Adaptez-la à votre environnement.
+La connexion est configurée par variables d'environnement (valeurs par défaut entre parenthèses) :
+
+| Variable      | Rôle                    | Défaut                                       |
+|---------------|-------------------------|----------------------------------------------|
+| `DB_URL`      | URL JDBC                | `jdbc:mysql://localhost/cafe?useSSL=false`   |
+| `DB_USER`     | Utilisateur MySQL       | `root`                                       |
+| `DB_PASSWORD` | Mot de passe MySQL      | *(vide)*                                     |
 
 ---
 
-## 🚀 Installation et lancement
+## Installation et lancement
 
 ### Prérequis
-- **JDK 8** avec JavaFX (ex. Oracle JDK 8 ou Liberica JDK 8 *Full*)
-- **MySQL** (ou MariaDB / XAMPP)
+- **JDK 8** avec JavaFX (ex. Oracle JDK 8, Zulu 8 *FX* ou Liberica JDK 8 *Full*)
+- **MySQL** (ou MariaDB / XAMPP), ou bien **Docker**
 - **Apache NetBeans** (recommandé)
 
 ### Étapes
@@ -158,27 +181,56 @@ CREATE TABLE receipt (
    cd CafeShopManagement
    ```
 
-2. **Créer la base de données** en exécutant le script SQL ci-dessus.
+2. **Démarrer la base de données**
 
-3. **Ouvrir le projet** `cafeShopManagementSystem/` dans NetBeans.
+   Avec Docker (MySQL + Adminer sur http://localhost:8080) :
+   ```bash
+   cp .env.example .env
+   docker compose up -d
+   ```
+   Le schéma est appliqué automatiquement au premier démarrage.
 
-4. **Ajouter les dépendances** : *Project Properties → Libraries → Add JAR/Folder*
+   Sans Docker : exécuter `database/schema.sql` sur votre serveur MySQL.
+
+3. **Configurer la connexion** (si différente des valeurs par défaut)
+   ```bash
+   export $(grep -v '^#' .env | xargs)
+   ```
+
+4. **Ouvrir le projet** `cafeShopManagementSystem/` dans NetBeans.
+
+5. **Ajouter les dépendances** : *Project Properties → Libraries → Add JAR/Folder*
    et sélectionner tous les fichiers de `cafeShopManagementSystem/dist/lib/`.
-
-5. **Adapter le chemin du reçu** dans `mainFormController.java` (méthode `menuReceiptBtn`)
-   pour pointer vers `src/cafeshopmanagementsystem/report.jrxml` sur votre machine.
 
 6. **Lancer** l'application avec *Run Project* (F6).
 
-### Lancement direct du `.jar`
+### Build et lancement en ligne de commande
 
 ```bash
-cd cafeShopManagementSystem/dist
-java -jar cafeShopManagementSystem.jar
+./scripts/build.sh
+java -jar out/package/CafeShopManagement.jar
 ```
 
 ---
 
-## 👤 Auteur
+## CI/CD et DevSecOps
 
-**Andassa** — [github.com/Andassa](https://github.com/Andassa)
+| Workflow | Déclencheur | Rôle |
+|----------|-------------|------|
+| **CI** (`ci.yml`) | push / pull request sur `main` | Compilation JDK 8 + JavaFX, packaging du jar (artefact), application du schéma sur un MySQL 8 de test, validation de `docker-compose.yml` |
+| **Security** (`security.yml`) | push, pull request, chaque lundi | **CodeQL** (analyse statique du code Java), **Gitleaks** (détection de secrets dans l'historique), **Trivy** (CVE des bibliothèques jar) avec résultats dans l'onglet *Security* |
+| **Release** (`release.yml`) | tag `v*` | Build puis publication d'une release GitHub avec l'archive prête à l'emploi (jar + lib + schéma SQL) |
+| **Dependabot** | chaque semaine | Mise à jour des actions GitHub et des images Docker |
+
+Publier une nouvelle version :
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+---
+
+## Auteur
+
+**Andassa** : [github.com/Andassa](https://github.com/Andassa)
