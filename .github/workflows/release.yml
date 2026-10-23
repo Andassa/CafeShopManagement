@@ -1,0 +1,40 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Publication de la release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup JDK 8 avec JavaFX
+        uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: '8'
+          java-package: jdk+fx
+
+      - name: Build
+        run: ./scripts/build.sh
+
+      - name: Archive
+        run: |
+          cp database/schema.sql out/package/
+          cd out/package
+          zip -qr "../CafeShopManagement-${GITHUB_REF_NAME}.zip" .
+
+      - name: Création de la release GitHub
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            "out/CafeShopManagement-${GITHUB_REF_NAME}.zip" \
+            --title "CafeShopManagement $GITHUB_REF_NAME" \
+            --generate-notes
