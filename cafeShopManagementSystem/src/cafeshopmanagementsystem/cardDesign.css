@@ -6,20 +6,21 @@ and open the template in the editor.
 /* 
     Created on : 03 12, 23, 1:43:05 PM
     Author     : WINDOWS 10
+    Palette    : #000000 (black) / #1F150C (night) / #412D15 (dark coffee) / #E1DCC9 (beige)
 */
 
 .card{
-    -fx-background-color: #fff;
+    -fx-background-color: derive(#E1DCC9, 50%);
     -fx-background-radius: 5px;
 }
 .shadow{
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);
 }
 .btn{
-    -fx-background-color: linear-gradient(to bottom right, #098c53, #246861); 
+    -fx-background-color: linear-gradient(to bottom right, #412D15, #1F150C); 
     -fx-cursor: hand;
-    -fx-text-fill: #fff;
+    -fx-text-fill: #E1DCC9;
 }
 .btn:hover{
-    -fx-background-color: linear-gradient(to bottom right, #0fb565, #399a8f); 
+    -fx-background-color: linear-gradient(to bottom right, #1F150C, #000000); 
 }

@@ -22,7 +22,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cafeshopmanagementsystem.mainFormController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="main-bg" stylesheets="@mainFormDesign.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cafeshopmanagementsystem.mainFormController">
    <children>
       <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -34,19 +34,19 @@
                            <children>
                               <AnchorPane layoutX="11.0" layoutY="37.0" prefHeight="87.0" prefWidth="222.0" styleClass="header" stylesheets="@mainFormDesign.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <Label layoutX="5.0" layoutY="33.0" text="Cafe Shop Management System" textFill="WHITE">
+                                    <Label layoutX="5.0" layoutY="33.0" text="Cafe Shop Management System" textFill="#E1DCC9">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
                                  </children>
                               </AnchorPane>
-                              <Label layoutX="14.0" layoutY="103.0" text="Welcome, " textFill="WHITE">
+                              <Label layoutX="14.0" layoutY="103.0" text="Welcome, " textFill="#E1DCC9">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="username" layoutX="84.0" layoutY="100.0" prefHeight="17.0" prefWidth="126.0" text="Andassa" textFill="WHITE">
+                              <Label fx:id="username" layoutX="84.0" layoutY="100.0" prefHeight="17.0" prefWidth="126.0" text="Andassa" textFill="#E1DCC9">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -57,14 +57,14 @@
                               <Button fx:id="customers_btn" layoutX="6.0" layoutY="349.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" stylesheets="@mainFormDesign.css" text="Customers" />
                               <Button fx:id="logout_btn" layoutX="14.0" layoutY="554.0" mnemonicParsing="false" onAction="#logout" stylesheets="@mainFormDesign.css" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="14.0">
                                  <graphic>
-                                    <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" size="2em" />
+                                    <FontAwesomeIcon fill="#E1DCC9" glyphName="SIGN_OUT" size="2em" />
                                  </graphic>
                                  <styleClass>
                                     <String fx:value="logout" />
                                     <String fx:value="shadow" />
                                  </styleClass>
                               </Button>
-                              <Label layoutX="62.0" layoutY="560.0" text="Sign Out" textFill="WHITE" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="62.0">
+                              <Label layoutX="62.0" layoutY="560.0" text="Sign Out" textFill="#E1DCC9" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="62.0">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -92,13 +92,13 @@
                                              <children>
                                                 <AnchorPane layoutX="14.0" layoutY="10.0" prefHeight="134.0" prefWidth="252.0" styleClass="nav-form" stylesheets="@mainFormDesign.css">
                                                    <children>
-                                                      <FontAwesomeIcon fill="WHITE" glyphName="USERS" layoutX="14.0" layoutY="88.0" size="5em" />
-                                                      <Label layoutX="78.0" layoutY="97.0" text="Number of Customer" textFill="WHITE">
+                                                      <FontAwesomeIcon fill="#E1DCC9" glyphName="USERS" layoutX="14.0" layoutY="88.0" size="5em" />
+                                                      <Label layoutX="78.0" layoutY="97.0" text="Number of Customer" textFill="#E1DCC9">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label fx:id="dashboard_NC" alignment="CENTER_RIGHT" layoutX="91.0" layoutY="14.0" prefHeight="21.0" prefWidth="147.0" text="0" textFill="WHITE">
+                                                      <Label fx:id="dashboard_NC" alignment="CENTER_RIGHT" layoutX="91.0" layoutY="14.0" prefHeight="21.0" prefWidth="147.0" text="0" textFill="#E1DCC9">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
@@ -107,13 +107,13 @@
                                                 </AnchorPane>
                                                 <AnchorPane layoutX="288.0" layoutY="10.0" prefHeight="134.0" prefWidth="252.0" styleClass="nav-form" stylesheets="@mainFormDesign.css">
                                                    <children>
-                                                      <FontAwesomeIcon fill="WHITE" glyphName="DOLLAR" layoutX="14.0" layoutY="88.0" size="5em" />
-                                                      <Label layoutX="78.0" layoutY="97.0" text="Today's Income" textFill="WHITE">
+                                                      <FontAwesomeIcon fill="#E1DCC9" glyphName="DOLLAR" layoutX="14.0" layoutY="88.0" size="5em" />
+                                                      <Label layoutX="78.0" layoutY="97.0" text="Today's Income" textFill="#E1DCC9">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label fx:id="dashboard_TI" alignment="CENTER_RIGHT" layoutX="91.0" layoutY="14.0" prefHeight="21.0" prefWidth="147.0" text="\$0.0" textFill="WHITE">
+                                                      <Label fx:id="dashboard_TI" alignment="CENTER_RIGHT" layoutX="91.0" layoutY="14.0" prefHeight="21.0" prefWidth="147.0" text="\$0.0" textFill="#E1DCC9">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
@@ -122,13 +122,13 @@
                                                 </AnchorPane>
                                                 <AnchorPane layoutX="564.0" layoutY="10.0" prefHeight="134.0" prefWidth="252.0" styleClass="nav-form" stylesheets="@mainFormDesign.css">
                                                    <children>
-                                                      <FontAwesomeIcon fill="WHITE" glyphName="MONEY" layoutX="14.0" layoutY="88.0" size="5em" />
-                                                      <Label layoutX="104.0" layoutY="97.0" text="Total Income" textFill="WHITE">
+                                                      <FontAwesomeIcon fill="#E1DCC9" glyphName="MONEY" layoutX="14.0" layoutY="88.0" size="5em" />
+                                                      <Label layoutX="104.0" layoutY="97.0" text="Total Income" textFill="#E1DCC9">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label fx:id="dashboard_TotalI" alignment="CENTER_RIGHT" layoutX="91.0" layoutY="14.0" prefHeight="21.0" prefWidth="147.0" text="\$0.0" textFill="WHITE">
+                                                      <Label fx:id="dashboard_TotalI" alignment="CENTER_RIGHT" layoutX="91.0" layoutY="14.0" prefHeight="21.0" prefWidth="147.0" text="\$0.0" textFill="#E1DCC9">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
@@ -137,13 +137,13 @@
                                                 </AnchorPane>
                                                 <AnchorPane layoutX="838.0" layoutY="10.0" prefHeight="134.0" prefWidth="252.0" styleClass="nav-form" stylesheets="@mainFormDesign.css">
                                                    <children>
-                                                      <FontAwesomeIcon fill="WHITE" glyphName="SHOPPING_CART" layoutX="14.0" layoutY="88.0" size="5em" />
-                                                      <Label layoutX="78.0" layoutY="97.0" text="Number of Sold Products" textFill="WHITE">
+                                                      <FontAwesomeIcon fill="#E1DCC9" glyphName="SHOPPING_CART" layoutX="14.0" layoutY="88.0" size="5em" />
+                                                      <Label layoutX="78.0" layoutY="97.0" text="Number of Sold Products" textFill="#E1DCC9">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label fx:id="dashboard_NSP" alignment="CENTER_RIGHT" layoutX="91.0" layoutY="14.0" prefHeight="21.0" prefWidth="147.0" text="0" textFill="WHITE">
+                                                      <Label fx:id="dashboard_NSP" alignment="CENTER_RIGHT" layoutX="91.0" layoutY="14.0" prefHeight="21.0" prefWidth="147.0" text="0" textFill="#E1DCC9">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>

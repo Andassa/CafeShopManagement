@@ -6,36 +6,37 @@ and open the template in the editor.
 /* 
     Created on : 03 10, 23, 10:44:33 AM
     Author     : WINDOWS 10
+    Palette    : #000000 (black) / #1F150C (night) / #412D15 (dark coffee) / #E1DCC9 (beige)
 */
 
 .gradient{
-    -fx-background-color: linear-gradient(to bottom right, #0f6789, #286155);
+    -fx-background-color: linear-gradient(to bottom right, #000000, #412D15);
 }
 
 .white-form{
-    -fx-background-color: #fff;
+    -fx-background-color: #E1DCC9;
 }
 
 .head-label{
-    -fx-border-color: #286155;
+    -fx-border-color: #412D15;
     -fx-border-width: 0 0 0 3px;
     -fx-padding: 0 0 0 5px;
 }
 
 .login-btn{
-    -fx-background-color: linear-gradient(to bottom right, #098c53, #246861); 
+    -fx-background-color: linear-gradient(to bottom right, #412D15, #1F150C); 
     -fx-background-radius: 5px;
     -fx-cursor: hand;
-    -fx-text-fill: #fff;
+    -fx-text-fill: #E1DCC9;
     -fx-font-size: 14px;
 }
 .login-btn:hover{
-    -fx-background-color: linear-gradient(to bottom right, #0fb565, #399a8f); 
+    -fx-background-color: linear-gradient(to bottom right, #1F150C, #000000); 
 }
 
 .textfield{
     -fx-background-color: transparent;
-    -fx-border-color: linear-gradient(to bottom right, #0f6789, #286155);
+    -fx-border-color: linear-gradient(to bottom right, #412D15, #1F150C);
     -fx-border-width: .5px;
 }
 .textfield:focused{
@@ -45,11 +46,11 @@ and open the template in the editor.
 .create-btn{
     -fx-background-color: transparent;
     -fx-cursor: hand;
-    -fx-text-fill: #fff;
-    -fx-border-color: #fff;
+    -fx-text-fill: #E1DCC9;
+    -fx-border-color: #E1DCC9;
     -fx-border-width: 1px;
 }
 .create-btn:hover{
-    -fx-background-color: #fff;
-    -fx-text-fill: #000;
+    -fx-background-color: #E1DCC9;
+    -fx-text-fill: #1F150C;
 }
