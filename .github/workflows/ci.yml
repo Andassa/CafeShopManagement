@@ -44,6 +44,22 @@ jobs:
           path: out/package/
           retention-days: 14
 
+  tests:
+    name: Tests unitaires (analyses IA, garde-fou SQL)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Setup JDK 8 avec JavaFX
+        uses: actions/setup-java@v6
+        with:
+          distribution: zulu
+          java-version: '8'
+          java-package: jdk+fx
+
+      - name: Tests
+        run: ./scripts/test.sh
+
   database:
     name: Schéma MySQL
     runs-on: ubuntu-latest
@@ -70,6 +86,13 @@ jobs:
           TABLES=$(mysql -h 127.0.0.1 -uroot -proot -N -e "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'cafe'")
           echo "Tables créées : $TABLES"
           test "$TABLES" -eq 4
+
+      - name: Chargement des données de démonstration
+        run: |
+          python3 scripts/demo_data.py | mysql -h 127.0.0.1 -uroot -proot cafe
+          COMMANDES=$(mysql -h 127.0.0.1 -uroot -proot -N -e "SELECT COUNT(*) FROM cafe.receipt")
+          echo "Commandes générées : $COMMANDES"
+          test "$COMMANDES" -gt 500
 
   docker-compose:
     name: Validation Docker Compose
