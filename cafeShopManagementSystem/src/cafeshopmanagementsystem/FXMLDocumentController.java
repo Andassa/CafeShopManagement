@@ -65,7 +65,7 @@ public class FXMLDocumentController implements Initializable {
     private PasswordField su_password;
     
     @FXML
-    private ComboBox<?> su_question;
+    private ComboBox<String> su_question;
     
     @FXML
     private TextField su_answer;
@@ -83,7 +83,7 @@ public class FXMLDocumentController implements Initializable {
     private Button fp_proceedBtn;
     
     @FXML
-    private ComboBox<?> fp_question;
+    private ComboBox<String> fp_question;
     
     @FXML
     private TextField fp_answer;
@@ -125,9 +125,9 @@ public class FXMLDocumentController implements Initializable {
         
         if (si_username.getText().isEmpty() || si_password.getText().isEmpty()) {
             alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error Message");
+            alert.setTitle("Erreur");
             alert.setHeaderText(null);
-            alert.setContentText("Incorrect Username/Password");
+            alert.setContentText("Nom d'utilisateur ou mot de passe incorrect");
             alert.showAndWait();
         } else {
             
@@ -148,9 +148,9 @@ public class FXMLDocumentController implements Initializable {
                     data.username = si_username.getText();
                     
                     alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
+                    alert.setTitle("Information");
                     alert.setHeaderText(null);
-                    alert.setContentText("Successfully Login!");
+                    alert.setContentText("Connexion réussie !");
                     alert.showAndWait();
                     
                     // LINK YOUR MAIN FORM
@@ -159,7 +159,7 @@ public class FXMLDocumentController implements Initializable {
                     Stage stage = new Stage();
                     Scene scene = new Scene(root);
                     
-                    stage.setTitle("Cafe Shop Management System");
+                    stage.setTitle("Gestion de Café");
                     stage.setMinWidth(1100);
                     stage.setMinHeight(600);
                     
@@ -170,9 +170,9 @@ public class FXMLDocumentController implements Initializable {
                     
                 } else { // IF NOT, THEN THE ERROR MESSAGE WILL APPEAR
                     alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Error Message");
+                    alert.setTitle("Erreur");
                     alert.setHeaderText(null);
-                    alert.setContentText("Incorrect Username/Password");
+                    alert.setContentText("Nom d'utilisateur ou mot de passe incorrect");
                     alert.showAndWait();
                 } 
                 
@@ -190,9 +190,9 @@ public class FXMLDocumentController implements Initializable {
                 || su_question.getSelectionModel().getSelectedItem() == null
                 || su_answer.getText().isEmpty()) {
             alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error Message");
+            alert.setTitle("Erreur");
             alert.setHeaderText(null);
-            alert.setContentText("Please fill all blank fields");
+            alert.setContentText("Veuillez remplir tous les champs");
             alert.showAndWait();
         } else {
             
@@ -210,15 +210,15 @@ public class FXMLDocumentController implements Initializable {
                 
                 if (result.next()) {
                     alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Error Message");
+                    alert.setTitle("Erreur");
                     alert.setHeaderText(null);
-                    alert.setContentText(su_username.getText() + " is already taken");
+                    alert.setContentText(su_username.getText() + " est déjà utilisé");
                     alert.showAndWait();
                 } else if (su_password.getText().length() < 8) {
                     alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Error Message");
+                    alert.setTitle("Erreur");
                     alert.setHeaderText(null);
-                    alert.setContentText("Invalid Password, atleast 8 characters are needed");
+                    alert.setContentText("Mot de passe invalide : 8 caractères minimum");
                     alert.showAndWait();
                 } else {
                     prepare = connect.prepareStatement(regData);
@@ -233,9 +233,9 @@ public class FXMLDocumentController implements Initializable {
                     prepare.executeUpdate();
                     
                     alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
+                    alert.setTitle("Information");
                     alert.setHeaderText(null);
-                    alert.setContentText("Successfully registered Account!");
+                    alert.setContentText("Compte créé avec succès !");
                     alert.showAndWait();
                     
                     su_username.setText("");
@@ -290,9 +290,9 @@ public class FXMLDocumentController implements Initializable {
                 || fp_answer.getText().isEmpty()) {
             
             alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error Message");
+            alert.setTitle("Erreur");
             alert.setHeaderText(null);
-            alert.setContentText("Please fill all blank fields");
+            alert.setContentText("Veuillez remplir tous les champs");
             alert.showAndWait();
             
         } else {
@@ -314,9 +314,9 @@ public class FXMLDocumentController implements Initializable {
                     fp_questionForm.setVisible(false);
                 } else {
                     alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Error Message");
+                    alert.setTitle("Erreur");
                     alert.setHeaderText(null);
-                    alert.setContentText("Incorrect Information");
+                    alert.setContentText("Informations incorrectes");
                     alert.showAndWait();
                 }
                 
@@ -332,9 +332,9 @@ public class FXMLDocumentController implements Initializable {
         
         if (np_newPassword.getText().isEmpty() || np_confirmPassword.getText().isEmpty()) {
             alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error Message");
+            alert.setTitle("Erreur");
             alert.setHeaderText(null);
-            alert.setContentText("Please fill all blank fields");
+            alert.setContentText("Veuillez remplir tous les champs");
             alert.showAndWait();
         } else {
             
@@ -366,9 +366,9 @@ public class FXMLDocumentController implements Initializable {
                     prepare.executeUpdate();
                     
                     alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
+                    alert.setTitle("Information");
                     alert.setHeaderText(null);
-                    alert.setContentText("Successfully changed Password!");
+                    alert.setContentText("Mot de passe modifié avec succès !");
                     alert.showAndWait();
                     
                     si_loginForm.setVisible(true);
@@ -386,9 +386,9 @@ public class FXMLDocumentController implements Initializable {
                 }
             } else {
                 alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Error Message");
+                alert.setTitle("Erreur");
                 alert.setHeaderText(null);
-                alert.setContentText("Not match");
+                alert.setContentText("Les mots de passe ne correspondent pas");
                 alert.showAndWait();
             }
         }
@@ -459,7 +459,8 @@ public class FXMLDocumentController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        su_question.setConverter(traduction.convertisseur());
+        fp_question.setConverter(traduction.convertisseur());
     }
     
 }

@@ -47,7 +47,7 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Spinner>
-                  <Button fx:id="prod_addBtn" mnemonicParsing="false" onAction="#addBtn" prefHeight="25.0" prefWidth="81.0" styleClass="btn" stylesheets="@cardDesign.css" text="Add" />
+                  <Button fx:id="prod_addBtn" mnemonicParsing="false" onAction="#addBtn" prefHeight="25.0" prefWidth="81.0" styleClass="btn" stylesheets="@cardDesign.css" text="Ajouter" />
                </children>
             </HBox>
          </children>

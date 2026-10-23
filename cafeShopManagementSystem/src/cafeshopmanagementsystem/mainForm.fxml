@@ -34,27 +34,27 @@
                            <children>
                               <AnchorPane layoutX="11.0" layoutY="37.0" prefHeight="87.0" prefWidth="222.0" styleClass="header" stylesheets="@mainFormDesign.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <Label layoutX="5.0" layoutY="33.0" text="Cafe Shop Management System" textFill="#E1DCC9">
+                                    <Label layoutX="5.0" layoutY="33.0" text="Gestion de Café" textFill="#E1DCC9">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
                                  </children>
                               </AnchorPane>
-                              <Label layoutX="14.0" layoutY="103.0" text="Welcome, " textFill="#E1DCC9">
+                              <Label layoutX="14.0" layoutY="96.0" text="Bienvenue," textFill="#E1DCC9">
                                  <font>
-                                    <Font size="15.0" />
+                                    <Font size="13.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="username" layoutX="84.0" layoutY="100.0" prefHeight="17.0" prefWidth="126.0" text="Andassa" textFill="#E1DCC9">
+                              <Label fx:id="username" layoutX="14.0" layoutY="115.0" prefHeight="26.0" prefWidth="196.0" text="Andassa" textFill="#E1DCC9">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="dashboard_btn" layoutX="6.0" layoutY="199.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" stylesheets="@mainFormDesign.css" text="Dashboard" />
-                              <Button fx:id="inventory_btn" layoutX="6.0" layoutY="248.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" stylesheets="@mainFormDesign.css" text="Inventory" />
+                              <Button fx:id="dashboard_btn" layoutX="6.0" layoutY="199.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" stylesheets="@mainFormDesign.css" text="Tableau de bord" />
+                              <Button fx:id="inventory_btn" layoutX="6.0" layoutY="248.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" stylesheets="@mainFormDesign.css" text="Inventaire" />
                               <Button fx:id="menu_btn" layoutX="6.0" layoutY="300.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" stylesheets="@mainFormDesign.css" text="Menu" />
-                              <Button fx:id="customers_btn" layoutX="6.0" layoutY="349.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" stylesheets="@mainFormDesign.css" text="Customers" />
+                              <Button fx:id="customers_btn" layoutX="6.0" layoutY="349.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" stylesheets="@mainFormDesign.css" text="Clients" />
                               <Button fx:id="logout_btn" layoutX="14.0" layoutY="554.0" mnemonicParsing="false" onAction="#logout" stylesheets="@mainFormDesign.css" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="14.0">
                                  <graphic>
                                     <FontAwesomeIcon fill="#E1DCC9" glyphName="SIGN_OUT" size="2em" />
@@ -64,7 +64,7 @@
                                     <String fx:value="shadow" />
                                  </styleClass>
                               </Button>
-                              <Label layoutX="62.0" layoutY="560.0" text="Sign Out" textFill="#E1DCC9" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="62.0">
+                              <Label layoutX="62.0" layoutY="560.0" text="Déconnexion" textFill="#E1DCC9" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="62.0">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -93,7 +93,7 @@
                                                 <AnchorPane layoutX="14.0" layoutY="10.0" prefHeight="134.0" prefWidth="252.0" styleClass="nav-form" stylesheets="@mainFormDesign.css">
                                                    <children>
                                                       <FontAwesomeIcon fill="#E1DCC9" glyphName="USERS" layoutX="14.0" layoutY="88.0" size="5em" />
-                                                      <Label layoutX="78.0" layoutY="97.0" text="Number of Customer" textFill="#E1DCC9">
+                                                      <Label layoutX="78.0" layoutY="97.0" text="Nombre de clients" textFill="#E1DCC9">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
@@ -108,7 +108,7 @@
                                                 <AnchorPane layoutX="288.0" layoutY="10.0" prefHeight="134.0" prefWidth="252.0" styleClass="nav-form" stylesheets="@mainFormDesign.css">
                                                    <children>
                                                       <FontAwesomeIcon fill="#E1DCC9" glyphName="DOLLAR" layoutX="14.0" layoutY="88.0" size="5em" />
-                                                      <Label layoutX="78.0" layoutY="97.0" text="Today's Income" textFill="#E1DCC9">
+                                                      <Label layoutX="78.0" layoutY="97.0" text="Revenu du jour" textFill="#E1DCC9">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
@@ -123,7 +123,7 @@
                                                 <AnchorPane layoutX="564.0" layoutY="10.0" prefHeight="134.0" prefWidth="252.0" styleClass="nav-form" stylesheets="@mainFormDesign.css">
                                                    <children>
                                                       <FontAwesomeIcon fill="#E1DCC9" glyphName="MONEY" layoutX="14.0" layoutY="88.0" size="5em" />
-                                                      <Label layoutX="104.0" layoutY="97.0" text="Total Income" textFill="#E1DCC9">
+                                                      <Label layoutX="104.0" layoutY="97.0" text="Revenu total" textFill="#E1DCC9">
                                                          <font>
                                                             <Font size="15.0" />
                                                          </font>
@@ -138,7 +138,7 @@
                                                 <AnchorPane layoutX="838.0" layoutY="10.0" prefHeight="134.0" prefWidth="252.0" styleClass="nav-form" stylesheets="@mainFormDesign.css">
                                                    <children>
                                                       <FontAwesomeIcon fill="#E1DCC9" glyphName="SHOPPING_CART" layoutX="14.0" layoutY="88.0" size="5em" />
-                                                      <Label layoutX="78.0" layoutY="97.0" text="Number of Sold Products" textFill="#E1DCC9">
+                                                      <Label layoutX="78.0" layoutY="97.0" text="Produits vendus" textFill="#E1DCC9">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
@@ -170,7 +170,7 @@
                                           <String fx:value="radius" />
                                        </styleClass>
                                        <children>
-                                          <AreaChart fx:id="dashboard_incomeChart" layoutX="-11.0" layoutY="-38.0" prefHeight="362.0" prefWidth="489.0" title="Income's Chart" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <AreaChart fx:id="dashboard_incomeChart" layoutX="-11.0" layoutY="-38.0" prefHeight="362.0" prefWidth="489.0" title="Revenus par jour" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <xAxis>
                                               <CategoryAxis side="BOTTOM" />
                                             </xAxis>
@@ -187,7 +187,7 @@
                                           <String fx:value="radius" />
                                        </styleClass>
                                        <children>
-                                          <BarChart fx:id="dashboard_CustomerChart" layoutX="-87.0" layoutY="-70.0" prefHeight="344.0" prefWidth="413.0" title="Customer's Chart" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <BarChart fx:id="dashboard_CustomerChart" layoutX="-87.0" layoutY="-70.0" prefHeight="344.0" prefWidth="413.0" title="Clients par jour" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <xAxis>
                                               <CategoryAxis side="BOTTOM" />
                                             </xAxis>
@@ -213,12 +213,12 @@
                                  <children>
                                     <TableView fx:id="inventory_tableView" layoutX="18.0" layoutY="16.0" onMouseClicked="#inventorySelectData" prefHeight="254.0" prefWidth="814.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="16.0">
                                       <columns>
-                                        <TableColumn fx:id="inventory_col_productID" prefWidth="75.0" text="Product ID" />
-                                        <TableColumn fx:id="inventory_col_productName" prefWidth="126.0" text="Product Name" />
+                                        <TableColumn fx:id="inventory_col_productID" prefWidth="75.0" text="ID produit" />
+                                        <TableColumn fx:id="inventory_col_productName" prefWidth="126.0" text="Produit" />
                                           <TableColumn fx:id="inventory_col_type" prefWidth="128.0" text="Type" />
                                           <TableColumn fx:id="inventory_col_stock" prefWidth="93.0" text="Stock" />
-                                          <TableColumn fx:id="inventory_col_price" prefWidth="100.0" text="Price" />
-                                          <TableColumn fx:id="inventory_col_status" prefWidth="121.0" text="Status" />
+                                          <TableColumn fx:id="inventory_col_price" prefWidth="100.0" text="Prix" />
+                                          <TableColumn fx:id="inventory_col_status" prefWidth="121.0" text="Statut" />
                                           <TableColumn fx:id="inventory_col_date" prefWidth="121.0" text="Date" />
                                       </columns>
                                        <columnResizePolicy>
@@ -234,31 +234,31 @@
                                     <String fx:value="shadow" />
                                  </styleClass>
                                  <children>
-                                    <Label layoutX="56.0" layoutY="30.0" text="Product ID:">
+                                    <Label layoutX="54.0" layoutY="30.0" text="ID produit :">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
                                     <TextField fx:id="inventory_productID" layoutX="134.0" layoutY="28.0" prefHeight="25.0" prefWidth="128.0" />
-                                    <Label layoutX="32.0" layoutY="70.0" text="Product Name:">
+                                    <Label layoutX="91.0" layoutY="70.0" text="Nom :">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
                                     <TextField fx:id="inventory_productName" layoutX="134.0" layoutY="67.0" prefHeight="25.0" prefWidth="168.0" />
-                                    <Label layoutX="91.0" layoutY="110.0" text="Type:">
+                                    <Label layoutX="87.0" layoutY="110.0" text="Type :">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="inventory_type" layoutX="134.0" layoutY="107.0" prefHeight="25.0" prefWidth="168.0" promptText="Choose Type..." />
-                                    <Label layoutX="388.0" layoutY="31.0" text="Stock:">
+                                    <ComboBox fx:id="inventory_type" layoutX="134.0" layoutY="107.0" prefHeight="25.0" prefWidth="168.0" promptText="Choisir un type…" />
+                                    <Label layoutX="380.0" layoutY="31.0" text="Stock :">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
                                     <TextField fx:id="inventory_stock" layoutX="432.0" layoutY="28.0" prefHeight="25.0" prefWidth="168.0" promptText="0" />
-                                    <Label layoutX="372.0" layoutY="70.0" text="Price ($):">
+                                    <Label layoutX="364.0" layoutY="70.0" text="Prix ($) :">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -273,17 +273,17 @@
                                           <ImageView fx:id="inventory_imageView" fitHeight="127.0" fitWidth="120.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                     </AnchorPane>
-                                    <Button fx:id="inventory_importBtn" layoutX="711.0" layoutY="163.0" mnemonicParsing="false" onAction="#inventoryImportBtn" prefHeight="26.0" prefWidth="99.0" styleClass="btn" stylesheets="@mainFormDesign.css" text="Import" AnchorPane.rightAnchor="39.0" />
-                                    <Button fx:id="inventory_addBtn" layoutX="105.0" layoutY="189.0" mnemonicParsing="false" onAction="#inventoryAddBtn" prefHeight="41.0" prefWidth="112.0" styleClass="btn" stylesheets="@mainFormDesign.css" text="Add" AnchorPane.bottomAnchor="31.0" />
-                                    <Button fx:id="inventory_updateBtn" layoutX="238.0" layoutY="189.0" mnemonicParsing="false" onAction="#inventoryUpdateBtn" prefHeight="41.0" prefWidth="112.0" styleClass="btn" stylesheets="@mainFormDesign.css" text="Update" AnchorPane.bottomAnchor="31.0" />
-                                    <Button fx:id="inventory_clearBtn" layoutX="395.0" layoutY="189.0" mnemonicParsing="false" onAction="#inventoryClearBtn" prefHeight="41.0" prefWidth="112.0" styleClass="btn" stylesheets="@mainFormDesign.css" text="Clear" AnchorPane.bottomAnchor="31.0" />
-                                    <Button fx:id="inventory_deleteBtn" layoutX="528.0" layoutY="189.0" mnemonicParsing="false" onAction="#inventoryDeleteBtn" prefHeight="41.0" prefWidth="112.0" styleClass="btn" stylesheets="@mainFormDesign.css" text="Delete" AnchorPane.bottomAnchor="31.0" />
-                                    <Label layoutX="386.0" layoutY="112.0" text="Status:">
+                                    <Button fx:id="inventory_importBtn" layoutX="711.0" layoutY="163.0" mnemonicParsing="false" onAction="#inventoryImportBtn" prefHeight="26.0" prefWidth="99.0" styleClass="btn" stylesheets="@mainFormDesign.css" text="Importer" AnchorPane.rightAnchor="39.0" />
+                                    <Button fx:id="inventory_addBtn" layoutX="105.0" layoutY="189.0" mnemonicParsing="false" onAction="#inventoryAddBtn" prefHeight="41.0" prefWidth="112.0" styleClass="btn" stylesheets="@mainFormDesign.css" text="Ajouter" AnchorPane.bottomAnchor="31.0" />
+                                    <Button fx:id="inventory_updateBtn" layoutX="238.0" layoutY="189.0" mnemonicParsing="false" onAction="#inventoryUpdateBtn" prefHeight="41.0" prefWidth="112.0" styleClass="btn" stylesheets="@mainFormDesign.css" text="Modifier" AnchorPane.bottomAnchor="31.0" />
+                                    <Button fx:id="inventory_clearBtn" layoutX="395.0" layoutY="189.0" mnemonicParsing="false" onAction="#inventoryClearBtn" prefHeight="41.0" prefWidth="112.0" styleClass="btn" stylesheets="@mainFormDesign.css" text="Effacer" AnchorPane.bottomAnchor="31.0" />
+                                    <Button fx:id="inventory_deleteBtn" layoutX="528.0" layoutY="189.0" mnemonicParsing="false" onAction="#inventoryDeleteBtn" prefHeight="41.0" prefWidth="112.0" styleClass="btn" stylesheets="@mainFormDesign.css" text="Supprimer" AnchorPane.bottomAnchor="31.0" />
+                                    <Label layoutX="375.0" layoutY="112.0" text="Statut :">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="inventory_status" layoutX="432.0" layoutY="108.0" prefHeight="25.0" prefWidth="168.0" promptText="Choose Status..." />
+                                    <ComboBox fx:id="inventory_status" layoutX="432.0" layoutY="108.0" prefHeight="25.0" prefWidth="168.0" promptText="Choisir un statut…" />
                                  </children>
                               </AnchorPane>
                               <Separator layoutX="14.0" layoutY="312.0" prefHeight="5.0" prefWidth="852.0" AnchorPane.bottomAnchor="283.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="12.0" />
@@ -318,12 +318,12 @@
                                  <children>
                                     <TableView fx:id="menu_tableView" layoutX="13.0" layoutY="14.0" onMouseClicked="#menuSelectOrder" prefHeight="249.0" prefWidth="295.0" AnchorPane.bottomAnchor="303.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="14.0">
                                       <columns>
-                                        <TableColumn fx:id="menu_col_productName" prefWidth="115.0" text="Product Name" />
-                                        <TableColumn fx:id="menu_col_quantity" prefWidth="79.0" text="Quantity" />
-                                          <TableColumn fx:id="menu_col_price" prefWidth="99.0" text="Price ($)" />
+                                        <TableColumn fx:id="menu_col_productName" prefWidth="115.0" text="Produit" />
+                                        <TableColumn fx:id="menu_col_quantity" prefWidth="79.0" text="Quantité" />
+                                          <TableColumn fx:id="menu_col_price" prefWidth="99.0" text="Prix ($)" />
                                       </columns>
                                     </TableView>
-                                    <Label layoutX="140.0" layoutY="283.0" text="Total: " AnchorPane.bottomAnchor="262.0" AnchorPane.rightAnchor="139.0">
+                                    <Label layoutX="140.0" layoutY="283.0" text="Total :" AnchorPane.bottomAnchor="262.0" AnchorPane.rightAnchor="139.0">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
@@ -333,13 +333,13 @@
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="112.0" layoutY="313.0" text="Amount:" AnchorPane.bottomAnchor="232.0" AnchorPane.rightAnchor="144.0">
+                                    <Label layoutX="112.0" layoutY="313.0" text="Montant :" AnchorPane.bottomAnchor="232.0" AnchorPane.rightAnchor="144.0">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
                                     <TextField fx:id="menu_amount" layoutX="182.0" layoutY="311.0" onAction="#menuAmount" prefHeight="25.0" prefWidth="126.0" promptText="\$0.0" AnchorPane.bottomAnchor="230.0" AnchorPane.rightAnchor="12.0" />
-                                    <Label layoutX="121.0" layoutY="343.0" text="Change:" AnchorPane.bottomAnchor="202.0" AnchorPane.rightAnchor="144.0">
+                                    <Label layoutX="121.0" layoutY="343.0" text="Monnaie :" AnchorPane.bottomAnchor="202.0" AnchorPane.rightAnchor="144.0">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
@@ -349,9 +349,9 @@
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="menu_payBtn" layoutX="15.0" layoutY="420.0" mnemonicParsing="false" onAction="#menuPayBtn" prefHeight="41.0" prefWidth="290.0" styleClass="btn" stylesheets="@mainFormDesign.css" text="Pay" AnchorPane.bottomAnchor="105.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
-                                    <Button fx:id="menu_removeBtn" layoutX="28.0" layoutY="489.0" mnemonicParsing="false" onAction="#menuRemoveBtn" prefHeight="41.0" prefWidth="119.0" styleClass="btn" stylesheets="@mainFormDesign.css" text="Remove" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="28.0" />
-                                    <Button fx:id="menu_receiptBtn" layoutX="173.0" layoutY="489.0" mnemonicParsing="false" onAction="#menuReceiptBtn" prefHeight="41.0" prefWidth="119.0" styleClass="btn" stylesheets="@mainFormDesign.css" text="Receipt" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="28.0" />
+                                    <Button fx:id="menu_payBtn" layoutX="15.0" layoutY="420.0" mnemonicParsing="false" onAction="#menuPayBtn" prefHeight="41.0" prefWidth="290.0" styleClass="btn" stylesheets="@mainFormDesign.css" text="Payer" AnchorPane.bottomAnchor="105.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+                                    <Button fx:id="menu_removeBtn" layoutX="28.0" layoutY="489.0" mnemonicParsing="false" onAction="#menuRemoveBtn" prefHeight="41.0" prefWidth="119.0" styleClass="btn" stylesheets="@mainFormDesign.css" text="Retirer" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="28.0" />
+                                    <Button fx:id="menu_receiptBtn" layoutX="173.0" layoutY="489.0" mnemonicParsing="false" onAction="#menuReceiptBtn" prefHeight="41.0" prefWidth="119.0" styleClass="btn" stylesheets="@mainFormDesign.css" text="Reçu" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="28.0" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -365,17 +365,17 @@
                                     <String fx:value="radius" />
                                  </styleClass>
                                  <children>
-                                    <Label layoutX="18.0" layoutY="14.0" text="Customers" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="14.0">
+                                    <Label layoutX="18.0" layoutY="14.0" text="Clients" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="14.0">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
                                     </Label>
                                     <TableView fx:id="customers_tableView" layoutX="18.0" layoutY="57.0" prefHeight="487.0" prefWidth="800.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="57.0">
                                       <columns>
-                                        <TableColumn fx:id="customers_col_customerID" prefWidth="211.0" text="Customer ID" />
+                                        <TableColumn fx:id="customers_col_customerID" prefWidth="211.0" text="N° client" />
                                         <TableColumn fx:id="customers_col_total" prefWidth="241.0" text="Total ($)" />
                                           <TableColumn fx:id="customers_col_date" prefWidth="171.0" text="Date" />
-                                          <TableColumn fx:id="customers_col_cashier" prefWidth="175.0" text="Cashier" />
+                                          <TableColumn fx:id="customers_col_cashier" prefWidth="175.0" text="Caissier" />
                                       </columns>
                                        <columnResizePolicy>
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

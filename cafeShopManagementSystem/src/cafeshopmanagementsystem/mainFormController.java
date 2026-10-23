@@ -140,10 +140,10 @@ public class mainFormController implements Initializable {
     private TextField inventory_price;
     
     @FXML
-    private ComboBox<?> inventory_status;
+    private ComboBox<String> inventory_status;
     
     @FXML
-    private ComboBox<?> inventory_type;
+    private ComboBox<String> inventory_type;
     
     @FXML
     private AnchorPane menu_form;
@@ -373,9 +373,9 @@ public class mainFormController implements Initializable {
                 || data.path == null) {
             
             alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error Message");
+            alert.setTitle("Erreur");
             alert.setHeaderText(null);
-            alert.setContentText("Please fill all blank fields");
+            alert.setContentText("Veuillez remplir tous les champs");
             alert.showAndWait();
             
         } else {
@@ -393,9 +393,9 @@ public class mainFormController implements Initializable {
                 
                 if (result.next()) {
                     alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Error Message");
+                    alert.setTitle("Erreur");
                     alert.setHeaderText(null);
-                    alert.setContentText(inventory_productID.getText() + " is already taken");
+                    alert.setContentText(inventory_productID.getText() + " est déjà utilisé");
                     alert.showAndWait();
                 } else {
                     String insertData = "INSERT INTO product "
@@ -424,9 +424,9 @@ public class mainFormController implements Initializable {
                     prepare.executeUpdate();
                     
                     alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("Error Message");
+                    alert.setTitle("Erreur");
                     alert.setHeaderText(null);
-                    alert.setContentText("Successfully Added!");
+                    alert.setContentText("Ajouté avec succès !");
                     alert.showAndWait();
                     
                     inventoryShowData();
@@ -450,9 +450,9 @@ public class mainFormController implements Initializable {
                 || data.path == null || data.id == 0) {
             
             alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error Message");
+            alert.setTitle("Erreur");
             alert.setHeaderText(null);
-            alert.setContentText("Please fill all blank fields");
+            alert.setContentText("Veuillez remplir tous les champs");
             alert.showAndWait();
             
         } else {
@@ -465,9 +465,9 @@ public class mainFormController implements Initializable {
             try {
                 
                 alert = new Alert(AlertType.CONFIRMATION);
-                alert.setTitle("Error Message");
+                alert.setTitle("Erreur");
                 alert.setHeaderText(null);
-                alert.setContentText("Are you sure you want to UPDATE PRoduct ID: " + inventory_productID.getText() + "?");
+                alert.setContentText("Voulez-vous vraiment modifier le produit " + inventory_productID.getText() + "?");
                 Optional<ButtonType> option = alert.showAndWait();
                 
                 if (option.get().equals(ButtonType.OK)) {
@@ -484,9 +484,9 @@ public class mainFormController implements Initializable {
                     prepare.executeUpdate();
                     
                     alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("Error Message");
+                    alert.setTitle("Erreur");
                     alert.setHeaderText(null);
-                    alert.setContentText("Successfully Updated!");
+                    alert.setContentText("Modifié avec succès !");
                     alert.showAndWait();
 
                     // TO UPDATE YOUR TABLE VIEW
@@ -495,9 +495,9 @@ public class mainFormController implements Initializable {
                     inventoryClearBtn();
                 } else {
                     alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Error Message");
+                    alert.setTitle("Erreur");
                     alert.setHeaderText(null);
-                    alert.setContentText("Cancelled.");
+                    alert.setContentText("Annulé.");
                     alert.showAndWait();
                 }
             } catch (Exception e) {
@@ -510,16 +510,16 @@ public class mainFormController implements Initializable {
         if (data.id == 0) {
             
             alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error Message");
+            alert.setTitle("Erreur");
             alert.setHeaderText(null);
-            alert.setContentText("Please fill all blank fields");
+            alert.setContentText("Veuillez remplir tous les champs");
             alert.showAndWait();
             
         } else {
             alert = new Alert(AlertType.CONFIRMATION);
-            alert.setTitle("Error Message");
+            alert.setTitle("Erreur");
             alert.setHeaderText(null);
-            alert.setContentText("Are you sure you want to DELETE Product ID: " + inventory_productID.getText() + "?");
+            alert.setContentText("Voulez-vous vraiment supprimer le produit " + inventory_productID.getText() + "?");
             Optional<ButtonType> option = alert.showAndWait();
             
             if (option.get().equals(ButtonType.OK)) {
@@ -531,9 +531,9 @@ public class mainFormController implements Initializable {
                     prepare.executeUpdate();
                     
                     alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Error Message");
+                    alert.setTitle("Erreur");
                     alert.setHeaderText(null);
-                    alert.setContentText("successfully Deleted!");
+                    alert.setContentText("Supprimé avec succès !");
                     alert.showAndWait();
 
                     // TO UPDATE YOUR TABLE VIEW
@@ -546,9 +546,9 @@ public class mainFormController implements Initializable {
                 }
             } else {
                 alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Error Message");
+                alert.setTitle("Erreur");
                 alert.setHeaderText(null);
-                alert.setContentText("Cancelled");
+                alert.setContentText("Annulé.");
                 alert.showAndWait();
             }
         }
@@ -572,7 +572,7 @@ public class mainFormController implements Initializable {
     public void inventoryImportBtn() {
         
         FileChooser openFile = new FileChooser();
-        openFile.getExtensionFilters().add(new ExtensionFilter("Open Image File", "*png", "*jpg"));
+        openFile.getExtensionFilters().add(new ExtensionFilter("Image", "*png", "*jpg"));
         
         File file = openFile.showOpenDialog(main_form.getScene().getWindow());
         
@@ -636,6 +636,8 @@ public class mainFormController implements Initializable {
         inventory_col_price.setCellValueFactory(new PropertyValueFactory<>("price"));
         inventory_col_status.setCellValueFactory(new PropertyValueFactory<>("status"));
         inventory_col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
+        inventory_col_type.setCellFactory(col -> traduction.cellule());
+        inventory_col_status.setCellFactory(col -> traduction.cellule());
         
         inventory_tableView.setItems(inventoryListData);
         
@@ -859,9 +861,9 @@ public class mainFormController implements Initializable {
         menuGetTotal();
         if (menu_amount.getText().isEmpty() || totalP == 0) {
             alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error Message");
+            alert.setTitle("Erreur");
             alert.setHeaderText(null);
-            alert.setContentText("Invalid :3");
+            alert.setContentText("Montant insuffisant");
             alert.showAndWait();
         } else {
             amount = Double.parseDouble(menu_amount.getText());
@@ -878,9 +880,9 @@ public class mainFormController implements Initializable {
         
         if (totalP == 0) {
             alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error Message");
+            alert.setTitle("Erreur");
             alert.setHeaderText(null);
-            alert.setContentText("Please choose your order first!");
+            alert.setContentText("Veuillez d'abord choisir une commande !");
             alert.showAndWait();
         } else {
             menuGetTotal();
@@ -893,15 +895,15 @@ public class mainFormController implements Initializable {
                 
                 if (amount == 0) {
                     alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Error Messaged");
+                    alert.setTitle("Erreur");
                     alert.setHeaderText(null);
-                    alert.setContentText("Something wrong :3");
+                    alert.setContentText("Une erreur est survenue");
                     alert.showAndWait();
                 } else {
                     alert = new Alert(AlertType.CONFIRMATION);
-                    alert.setTitle("Confirmation Message");
+                    alert.setTitle("Confirmation");
                     alert.setHeaderText(null);
-                    alert.setContentText("Are you sure?");
+                    alert.setContentText("Confirmer le paiement ?");
                     Optional<ButtonType> option = alert.showAndWait();
                     
                     if (option.get().equals(ButtonType.OK)) {
@@ -920,18 +922,18 @@ public class mainFormController implements Initializable {
                         prepare.executeUpdate();
                         
                         alert = new Alert(AlertType.INFORMATION);
-                        alert.setTitle("Infomation Message");
+                        alert.setTitle("Information");
                         alert.setHeaderText(null);
-                        alert.setContentText("Successful.");
+                        alert.setContentText("Paiement effectué.");
                         alert.showAndWait();
                         
                         menuShowOrderData();
                         
                     } else {
                         alert = new Alert(AlertType.WARNING);
-                        alert.setTitle("Infomation Message");
+                        alert.setTitle("Information");
                         alert.setHeaderText(null);
-                        alert.setContentText("Cancelled.");
+                        alert.setContentText("Annulé.");
                         alert.showAndWait();
                     }
                 }
@@ -947,18 +949,18 @@ public class mainFormController implements Initializable {
         
         if (getid == 0) {
             alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error Message");
+            alert.setTitle("Erreur");
             alert.setHeaderText(null);
-            alert.setContentText("Please select the order you want to remove");
+            alert.setContentText("Veuillez sélectionner la commande à retirer");
             alert.showAndWait();
         } else {
             String deleteData = "DELETE FROM customer WHERE id = ?";
             connect = database.connectDB();
             try {
                 alert = new Alert(AlertType.CONFIRMATION);
-                alert.setTitle("Confirmation Message");
+                alert.setTitle("Confirmation");
                 alert.setHeaderText(null);
-                alert.setContentText("Are you sure you want to delete this order?");
+                alert.setContentText("Voulez-vous vraiment supprimer cette commande ?");
                 Optional<ButtonType> option = alert.showAndWait();
                 
                 if (option.get().equals(ButtonType.OK)) {
@@ -979,8 +981,8 @@ public class mainFormController implements Initializable {
         
         if (totalP == 0 || menu_amount.getText().isEmpty()) {
             alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error Message");
-            alert.setContentText("Please order first");
+            alert.setTitle("Erreur");
+            alert.setContentText("Veuillez d'abord passer une commande");
             alert.showAndWait();
         } else {
             HashMap map = new HashMap();
@@ -1140,9 +1142,9 @@ public class mainFormController implements Initializable {
         try {
             
             alert = new Alert(AlertType.CONFIRMATION);
-            alert.setTitle("Error Message");
+            alert.setTitle("Erreur");
             alert.setHeaderText(null);
-            alert.setContentText("Are you sure you want to logout?");
+            alert.setContentText("Voulez-vous vraiment vous déconnecter ?");
             Optional<ButtonType> option = alert.showAndWait();
             
             if (option.get().equals(ButtonType.OK)) {
@@ -1156,7 +1158,7 @@ public class mainFormController implements Initializable {
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
                 
-                stage.setTitle("Cafe Shop Management System");
+                stage.setTitle("Gestion de Café");
                 
                 stage.setScene(scene);
                 stage.show();
@@ -1182,6 +1184,9 @@ public class mainFormController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         
         displayUsername();
+        
+        inventory_type.setConverter(traduction.convertisseur());
+        inventory_status.setConverter(traduction.convertisseur());
         
         dashboardDisplayNC();
         dashboardDisplayTI();

@@ -23,7 +23,7 @@ public class CafeShopManagementSystem extends Application {
         
         Scene scene = new Scene(root);
         
-        stage.setTitle("Cafe Shop Management System");
+        stage.setTitle("Gestion de Café");
         
         stage.setScene(scene);
         stage.show();

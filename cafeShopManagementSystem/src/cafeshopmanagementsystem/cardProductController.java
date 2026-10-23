@@ -138,17 +138,17 @@ public class cardProductController implements Initializable {
 
             if (!check.equals("Available") || qty == 0) {
                 alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Error Message");
+                alert.setTitle("Erreur");
                 alert.setHeaderText(null);
-                alert.setContentText("Something Wrong :3");
+                alert.setContentText("Produit indisponible ou quantité invalide");
                 alert.showAndWait();
             } else {
 
                 if (checkStck < qty) {
                     alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Error Message");
+                    alert.setTitle("Erreur");
                     alert.setHeaderText(null);
-                    alert.setContentText("Invalid. This product is Out of stock");
+                    alert.setContentText("Stock insuffisant pour ce produit");
                     alert.showAndWait();
                 } else {
                     String insertImage = prod_image.replace("\\", "\\\\");
@@ -194,9 +194,9 @@ public class cardProductController implements Initializable {
                     prepare.executeUpdate();
 
                     alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
+                    alert.setTitle("Information");
                     alert.setHeaderText(null);
-                    alert.setContentText("Successfully Added!");
+                    alert.setContentText("Ajouté avec succès !");
                     alert.showAndWait();
                     
                     mForm.menuGetTotal();

@@ -54,7 +54,7 @@ WHERE
 					<textElement textAlignment="Right">
 						<font size="7"/>
 					</textElement>
-					<text><![CDATA[Total: $]]></text>
+					<text><![CDATA[Total : $]]></text>
 				</staticText>
 				<textField>
 					<reportElement x="132" y="24" width="54" height="9" uuid="b4b7190e-bcf5-4dd6-90ed-5d4626a7dece"/>
@@ -76,14 +76,14 @@ WHERE
 				<textElement textAlignment="Center">
 					<font fontName="Comic Sans MS" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Andassa's Cafe Shop]]></text>
+				<text><![CDATA[Le Café d’Andassa]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="112" y="0" width="45" height="9" uuid="68b441f6-5573-4b73-b5fe-a57a66ff218a"/>
 				<textElement textAlignment="Right">
 					<font size="6" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Customer ID:]]></text>
+				<text><![CDATA[N° client :]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="157" y="0" width="29" height="9" uuid="365e46b0-02c9-4d80-87c6-0967b1e0e8b4"/>
@@ -104,7 +104,7 @@ WHERE
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="6" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Product Name]]></text>
+				<text><![CDATA[Produit]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="47" y="0" width="47" height="20" uuid="6f2a728d-fc1e-4e9e-b5b8-6b24d66924ea"/>
@@ -118,14 +118,14 @@ WHERE
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="6" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Quantity]]></text>
+				<text><![CDATA[Qté]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="137" y="0" width="49" height="20" uuid="c5e02b93-3f19-4dd3-8c45-1741b2f25240"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="6" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Price ($)]]></text>
+				<text><![CDATA[Prix ($)]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="0" width="186" height="1" uuid="0987c100-0dcd-49d6-a882-579b9bd8a2c8"/>
@@ -155,7 +155,7 @@ WHERE
 				<textElement textAlignment="Center">
 					<font size="7"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{customer_type}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[cafeshopmanagementsystem.traduction.fr($F{customer_type})]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="94" y="0" width="43" height="11" uuid="19806ee3-e2d2-421b-82c8-77ea1e2dd174"/>
@@ -187,7 +187,7 @@ WHERE
 			<staticText>
 				<reportElement x="0" y="13" width="186" height="20" uuid="5c29f4f6-3150-49ee-aea5-84a56ddb706c"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[Thank you for your Order!!]]></text>
+				<text><![CDATA[Merci pour votre commande !]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy h.mm a">
 				<reportElement x="86" y="43" width="100" height="10" uuid="d4107b8f-b96f-45d7-b54e-b889ec32c5f2"/>
