@@ -22,7 +22,7 @@ services:
       retries: 10
 
   adminer:
-    image: adminer:4
+    image: adminer:6
     container_name: cafe-adminer
     restart: unless-stopped
     ports:
